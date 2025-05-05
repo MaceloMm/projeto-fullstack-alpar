@@ -1,23 +1,29 @@
 generator client {
- provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
+
 datasource db {
- provider = "sqlite"
- url = env("DATABASE_URL")
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
 }
+
 model User {
- id Int @id @default(autoincrement())
- username String @unique
- password String
+    id       Int    @id @default(autoincrement())
+    email    String @unique
+    username String
+    password String
 }
+
 model Product {
- id Int @id @default(autoincrement())
- name String
- price Float
- description String
+    id          Int    @id @default(autoincrement())
+    name        String
+    price       Float
+    description String
 }
+
 model CartItem {
- id Int @id @default(autoincrement())
- productId Int
- quantity Int
+    id        Int @id @default(autoincrement())
+    userId    Int
+    productId Int
+    quantity  Int
 }
