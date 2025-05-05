@@ -1,0 +1,25 @@
+{
+  "name": "projeto-fullstask-alpar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaceloMm/projeto-fullstack-alpar.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MaceloMm/projeto-fullstack-alpar/issues"
+  },
+  "homepage": "https://github.com/MaceloMm/projeto-fullstack-alpar#readme",
+  "dependencies": {
+    "@prisma/client": "^6.7.0"
+  }
+}
