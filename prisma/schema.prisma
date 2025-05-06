@@ -8,22 +8,26 @@ datasource db {
 }
 
 model User {
-    id       Int    @id @default(autoincrement())
-    email    String @unique
+    id       Int        @id @default(autoincrement())
+    email    String     @unique
     username String
     password String
+    CartItem CartItem[]
 }
 
 model Product {
-    id          Int    @id @default(autoincrement())
+    id          Int        @id @default(autoincrement())
     name        String
     price       Float
     description String
+    CartItem    CartItem[]
 }
 
 model CartItem {
-    id        Int @id @default(autoincrement())
+    id        Int     @id @default(autoincrement())
     userId    Int
     productId Int
-    quantity  Int
+    quantity  Int     @default(1)
+    User      User    @relation(fields: [userId], references: [id])
+    Product   Product @relation(fields: [productId], references: [id])
 }
