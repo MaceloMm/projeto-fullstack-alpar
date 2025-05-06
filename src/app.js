@@ -4,6 +4,7 @@ const path = require('path');
 const authRoutes = require('./routes/auth.routes');
 const productRoutes = require('./routes/product.routes');
 const cartRoutes = require('./routes/cart.routes');
+const singupRoutes = require('./routes/singup.routes');
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../public')));
@@ -13,5 +14,6 @@ app.use(express.json());
 app.use('/auth', authRoutes);
 app.use('/products', productRoutes);
 app.use('/cart', cartRoutes);
+app.use('/singup', singupRoutes);
 
 module.exports = app;
