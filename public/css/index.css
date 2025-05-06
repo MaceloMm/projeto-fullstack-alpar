@@ -241,6 +241,7 @@ body.showCart .container {
   color: var(--primary--color);
   border-radius: 50%;
   cursor: pointer;
+  user-select: none;
 }
 .listCart .quantity span:nth-child(2) {
   background: transparent;
