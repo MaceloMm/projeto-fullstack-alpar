@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../public/images/icon.png" type="icon">
 </head>
 
-<body ng-controller="IndexController as vm">
+<body ng-controller="IndexController as vm" ng-class="{'showCart': showCart}">
 
 
     <!-- navbar -->
@@ -68,7 +68,7 @@
         </div>
 
         <!-- carrinho -->
-        <div>
+        <div ng-click="toggleCart()">
             <a href="">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                     fill="#000000">
@@ -89,9 +89,42 @@
         </div>
 
     </nav>
+    </div>
 
+    <!-- Produtos -->
+    <div class="container">
+      <div class="listProduct">
+        <div class="item" ng-repeat="product in products">
+          <img ng-src="{{product.image}}" alt="" />
+          <h2>{{product.name}}</h2>
+          <div class="price">${{product.price}}</div>
+          <button ng-click="addToCart(product)">Add To Cart</button>
+        </div>
+      </div>
+    </div>
 
-
+    <!-- Carrinho -->
+    <div class="cartTab">
+      <h1>Shopping Cart</h1>
+      <div class="listCart">
+        <div class="item" ng-repeat="item in cart">
+          <div class="image">
+            <img ng-src="{{item.image}}" alt="" />
+          </div>
+          <div class="name">{{item.name}}</div>
+          <div class="totalPrice">${{item.price * item.quantity}}</div>
+          <div class="quantity">
+            <span class="minus" ng-click="decreaseQuantity(item)">&#60;</span>
+            <span>{{item.quantity}}</span>
+            <span class="plus" ng-click="increaseQuantity(item)">&#62;</span>
+          </div>
+        </div>
+      </div>
+      <div class="btn">
+        <button class="close" ng-click="toggleCart()">CLOSE</button>
+        <button class="checkOut">CHECKOUT</button>
+      </div>
+    </div>
 
     <script>
         angular.module('lojaApp', []);
