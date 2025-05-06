@@ -1,4 +1,4 @@
-angular.module("lojaApp").controller("IndexController", function ($scope) {
+angular.module("lojaApp").controller("IndexController", function ($scope, $http) {
   const vm = this;
 
   //sidebar
@@ -22,14 +22,25 @@ angular.module("lojaApp").controller("IndexController", function ($scope) {
       scope.$apply();
     }
   });
-  $scope.products = [
+/*   $scope.products = [
     { name: "Produto 1", price: 200, image: "images/image.png" },
     { name: "Produto 2", price: 150, image: "images/image.png" },
     { name: "Produto 3", price: 300, image: "images/image.png" },
     { name: "Produto 4", price: 180, image: "images/image.png" },
-  ];
+  ]; */
 
   $scope.cart = [];
+  $scope.products= [];
+  $scope.cartOpenedOnce = false;
+  
+
+    $scope.callAPI = async () => {
+      const response = await $http.get('http://localhost:3000/products');
+      $scope.products = response.data;
+      $scope.$apply();
+    };
+
+    $scope.callAPI()
 
   $scope.toggleCart = function () {
     $scope.showCart = !$scope.showCart;
@@ -42,6 +53,12 @@ angular.module("lojaApp").controller("IndexController", function ($scope) {
     } else {
       $scope.cart.push({ ...product, quantity: 1 });
     }
+    $scope.showCart = true;
+  };
+
+  if ($scope.cartOpenedOnce) {
+    $scope.showCart = true;
+    $scope.cartOpenedOnce = true;
   };
 
   $scope.increaseQuantity = function (item) {
