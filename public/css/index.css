@@ -230,7 +230,7 @@ body.showCart .container {
   border: none;
   cursor: pointer;
  width: 18.0rem;
- 
+ transition: .3s;
   
 }
 

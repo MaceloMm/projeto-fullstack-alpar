@@ -31,6 +31,8 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
 
   $scope.cart = [];
   $scope.products= [];
+  $scope.cartOpenedOnce = false;
+  
 
     $scope.callAPI = async () => {
       const response = await $http.get('http://localhost:3000/products');
@@ -51,6 +53,12 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
     } else {
       $scope.cart.push({ ...product, quantity: 1 });
     }
+    $scope.showCart = true;
+  };
+
+  if ($scope.cartOpenedOnce) {
+    $scope.showCart = true;
+    $scope.cartOpenedOnce = true;
   };
 
   $scope.increaseQuantity = function (item) {
