@@ -6,39 +6,124 @@
     <title>Loja Virtual</title>
     <link rel="stylesheet" href="css/index.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
         rel="stylesheet">
- 
 
+    <link rel="shortcut icon" href="../public/images/icon.png" type="icon">
 </head>
 
-<body ng-controller="IndexController as vm">
+<body ng-controller="IndexController as vm" ng-class="{'showCart': showCart}">
 
+
+    <!-- navbar -->
     <nav>
-        <ul class="sidebar">
-            <li onclick=hideSidebar()><a href=""><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="26px" fill="#000000"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
-        
-            <li><a href="">Teste1</a></li>
-            <li><a href="">Teste2</a></li>
-            <li><a href="">Teste3</a></li>
-           
+        <div>
+            <a href="">Monkey</a>
+        </div>
 
+        <!-- sidebar -->
+        <ul class="sidebar" ng-class="{'flex': vm.sidebarVisivel}"
+            ng-style="{'display': vm.sidebarVisivel ? 'flex' : 'none'}">
+            <li ng-click="vm.hideSidebar()">
+                <a href="">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px"
+                        fill="#000000">
+                        <path
+                            d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                    </svg>
+                </a>
+            </li>
+            <li><a href="">Cadastro</a></li>
+            <li><a href="">Login</a></li>
+            <li><a href="">Ajuda</a></li>
         </ul>
-        <ul>
-            <li><a href="">logo</a></li>
-            <li class="hide"><a href="">Teste1</a></li>
-            <li class="hide"><a href="">Teste1</a></li>
-            <li class="menu_button" onclick=showSidebar()><a href=""><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#000000"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
-            
-        </ul>
+
+
+
+        <!-- pesquisa -->
+        <div class="pesquisa" id="barraPesquisa" ng-class="{'expandida': vm.pesquisaExpandida}">
+            <form ng-submit="$event.preventDefault()">
+                <input type="search" placeholder="Pesquisa" />
+                <a href="" ng-click="vm.togglePesquisa()">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px"
+                        fill="#000000" id="iconePesquisa">
+                        <path
+                            d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+                    </svg>
+                </a>
+            </form>
+        </div>
+
+        <!-- home -->
+        <div class="">
+            <a href=""><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px"
+                    fill="#000000">
+                    <path
+                        d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
+                </svg></a>
+        </div>
+
+        <!-- carrinho -->
+        <div ng-click="toggleCart()">
+            <a href="">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="#000000">
+                    <path
+                        d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z" />
+                </svg>
+            </a>
+        </div>
+
+        <!-- hamburg -->
+        <div class="menu_button" ng-click="vm.showSidebar()">
+            <a href="">
+                <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px"
+                    fill="#000000">
+                    <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+                </svg>
+            </a>
+        </div>
+
     </nav>
+    </div>
 
+    <!-- Produtos -->
+    <div class="container">
+        <div class="listProduct">
+          <div class="item" ng-repeat="product in products">
+            <img ng-src="{{product.image}}" alt="" />
+            <h2>{{product.name}}</h2>
+            <div class="price">${{product.price}}</div>
+            <button ng-click="addToCart(product)">Add To Cart</button>
+          </div>
+        </div>
+      </div>
 
-
+    <!-- Carrinho -->
+    <div class="cartTab">
+      <h1>Shopping Cart</h1>
+      <div class="listCart">
+        <div class="item" ng-repeat="item in cart">
+          <div class="image">
+            <img ng-src="{{item.image}}" alt="" />
+          </div>
+          <div class="name">{{item.name}}</div>
+          <div class="totalPrice">${{item.price * item.quantity}}</div>
+          <div class="quantity">
+            <span class="minus" ng-click="decreaseQuantity(item)">&#60;</span>
+            <span>{{item.quantity}}</span>
+            <span class="plus" ng-click="increaseQuantity(item)">&#62;</span>
+          </div>
+        </div>
+      </div>
+      <div class="btn">
+        <button class="close" ng-click="toggleCart()">CLOSE</button>
+        <button class="checkOut">CHECKOUT</button>
+      </div>
+    </div>
 
     <script>
         angular.module('lojaApp', []);
@@ -46,16 +131,7 @@
     <script src="scripts/index.controller.js"></script>
     <script src="scripts/index.service.js"></script>
 
-    <script>
-        function showSidebar(){
-            const sidebar = document.querySelector('.sidebar')
-            sidebar.style.display = 'flex'
-        }
-        function hideSidebar(){
-            const sidebar = document.querySelector('.sidebar')
-            sidebar.style.display = 'none'
-        }
-    </script>
+
 </body>
 
 </html>
