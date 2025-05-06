@@ -21,10 +21,12 @@ body {
 nav {
   background-color: var(--light--color);
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.197);
+  display: flex;
+  flex-direction: row;
+  height: 5.0rem;
 }
 
 nav ul {
-  width: 100%;
   list-style: none;
   display: flex;
   justify-content: flex-end;
@@ -32,72 +34,63 @@ nav ul {
 }
 
 nav li {
-  height: 5.0rem;
-
+  height: 5rem;
 }
 
-nav a{
-    height: 100%;
-    font-size: 1.6rem;
-    padding: 0 2.5rem;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    color: var(--dark--color);
-
-
+nav a {
+  height: 100%;
+  font-size: 1.6rem;
+  padding: 0 2.5rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: var(--dark--color);
 }
 
-nav a:hover{
-    background-color: rgb(201, 202, 219);
+nav a:hover {
+  background-color: rgb(201, 202, 219);
 }
 
-nav li:first-child{
-    margin-right: auto;
+nav div:first-child {
+  margin-right: auto;
 }
 
-.sidebar{
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 25.0rem;
-    z-index: 999;
-    backdrop-filter: blur(10px);
-    background-color: rgba(241, 245, 255, 0.136);
-    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.078);
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 25rem;
+  z-index: 999;
+  backdrop-filter: blur(10px);
+  background-color: rgba(241, 245, 255, 0.136);
+  box-shadow: -10px 0 10px rgba(0, 0, 0, 0.078);
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.sidebar li {
+  width: 100%;
+}
+
+.sidebar a {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .hide {
     display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-
+  }
+  .menu_button {
+    display: block;
+  }
 }
 
-.sidebar li{
+@media (max-width: 400px) {
+  .sidebar {
     width: 100%;
-
+  }
 }
-
-.sidebar a{
-    width: 100%;
-}
-
-.menu_button{
-    display: none;
-}
-
-@media(max-width: 600px){
-    .hide{
-        display: none;
-    }
-    .menu_button{
-        display: block;
-    }
-}
-
-@media(max-width: 400px){
-    .sidebar{
-        width: 100%;
-    }
-}
-
