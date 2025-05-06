@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <title>Loja Virtual</title>
-    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/login-cadastro.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +22,7 @@
     <!-- navbar -->
     <nav>
         <div>
-            <a href="index.html">Monkey</a>
+            <a href="../index.html">Monkey</a>
         </div>
 
         <!-- sidebar -->
@@ -36,8 +37,8 @@
                     </svg>
                 </a>
             </li>
-            <li><a href="../public/views/cadastro.html">Cadastro</a></li>
-            <li><a href="views/login.html">Login</a></li>
+            <li><a href="#">Cadastro</a></li>
+            <li><a href="../views/login.html">Login</a></li>
             <li><a href="">Ajuda</a></li>
         </ul>
 
@@ -59,15 +60,15 @@
 
         <!-- home -->
         <div class="">
-            <a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px"
-                    fill="#000000">
+            <a href="../index.html"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960"
+                    width="26px" fill="#000000">
                     <path
                         d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
                 </svg></a>
         </div>
 
         <!-- carrinho -->
-        <div ng-click="toggleCart()">
+        <!-- <div ng-click="toggleCart()">
             <a href="">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                     fill="#000000">
@@ -75,7 +76,7 @@
                         d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z" />
                 </svg>
             </a>
-        </div>
+        </div> -->
 
         <!-- hamburg -->
         <div class="menu_button" ng-click="vm.showSidebar()">
@@ -90,63 +91,46 @@
     </nav>
     </div>
 
+    <div class="cadastro">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    <!-- Produtos -->
-    <div class="container">
-        <div class="listProduct">
-          <div class="item" ng-repeat="product in products">
-            <img ng-src="{{product.image}}" alt="" />
-            <h2>{{product.name}}</h2>
-            <div class="price">${{product.price}}</div>
-            <button ng-click="addToCart(product)">Add To Cart</button>
-          </div>
+        <div class="signup-container">
+            <h2>Criar Conta</h2>
+            <form action="/cadastro" method="POST">
+                <div class="input-group">
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="username">Nome de Usuário</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="input-group">
+                    <label for="confirm-password">Confirme a Senha</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+                <button type="submit">Cadastrar</button>
+            </form>
+            <div class="login-link">
+                <a href="login.html">Já tem uma conta? Faça login</a>
+            </div>
         </div>
-      </div>
 
-    <!-- Carrinho -->
-    <div class="cartTab">
-      <h1>Shopping Cart</h1>
-      <div class="listCart">
-        <div class="item" ng-repeat="item in cart">
-          <div class="image">
-            <img ng-src="{{item.image}}" alt="" />
-          </div>
-          <div class="name">{{item.name}}</div>
-          <div class="totalPrice">${{item.price * item.quantity}}</div>
-          <div class="quantity">
-            <span class="minus" ng-click="decreaseQuantity(item)">&#60;</span>
-            <span>{{item.quantity}}</span>
-            <span class="plus" ng-click="increaseQuantity(item)">&#62;</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="btn">
-        <button class="close" ng-click="toggleCart()">CLOSE</button>
-        <button class="checkOut">CHECKOUT</button>
-      </div>
     </div>
+
 
     <script>
         angular.module('lojaApp', []);
     </script>
-    <script src="scripts/index.controller.js"></script>
-    <script src="scripts/index.service.js"></script>
+    <script src="../scripts/index.controller.js"></script>
+    <script src="../scripts/index.service.js"></script>
 
 
 </body>

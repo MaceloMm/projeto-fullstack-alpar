@@ -11,7 +11,7 @@
   --light--color: aliceblue;
   --primary--color: rgba(241, 249, 255, 0.862);
   --danger--color: rgb(141, 48, 48);
-  --bright--color: rgb(186, 235, 242);
+  --bright--color: rgb(169, 245, 255);
   font-size: 62.5%;
 }
 
@@ -203,6 +203,7 @@ nav div:first-child {
   display: grid;
   grid-template-rows: 7rem 1fr 7rem;
   transition: 0.5s;
+  justify-content: center;
 }
 
 body.showCart .cartTab {
@@ -221,16 +222,18 @@ body.showCart .container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   
-  
+  margin: 1.0rem;
+  column-gap: 1.4rem;
 }
 .cartTab .btn button {
   background-color: var(--bright--color);
   border: none;
   cursor: pointer;
- 
+ width: 18.0rem;
  
   
 }
+
 .cartTab .btn .close {
   background-color: var(--lightGray--color);
 }
