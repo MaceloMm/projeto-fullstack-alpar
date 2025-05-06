@@ -23,7 +23,7 @@ nav {
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.197);
   display: flex;
   flex-direction: row;
-  height: 5.0rem;
+  height: 5rem;
 }
 
 nav ul {
@@ -40,21 +40,64 @@ nav li {
 nav a {
   height: 100%;
   font-size: 1.6rem;
-  padding: 0 2.5rem;
+  padding: 0 1.5rem;
   text-decoration: none;
   display: flex;
   align-items: center;
   color: var(--dark--color);
+  transition: transform 0.2s ease;
 }
 
 nav a:hover {
-  background-color: rgb(201, 202, 219);
+  /*   background-color: rgb(201, 202, 219); */
+  transform: scale(1.1);
 }
 
 nav div:first-child {
   margin-right: auto;
 }
 
+.pesquisa {
+  background-color: var(--primary--color);
+
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: auto 0;
+ 
+  width: fit-content;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+.pesquisa form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pesquisa input {
+  width: 0;
+  opacity: 0;
+  transition: width 0.3s ease, opacity 0.3s ease;
+  background-color: var(--primary--color);
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+}
+
+.pesquisa.expandida input {
+  width: 150px;
+  opacity: 1;
+  border: 2px solid black;
+  border-radius: 30px;
+  padding: 4px;
+}
+
+.pesquisa svg {
+  cursor: pointer;
+}
 
 .sidebar {
   position: fixed;
@@ -78,6 +121,7 @@ nav div:first-child {
 
 .sidebar a {
   width: 100%;
+  margin-left: 0.5rem;
 }
 
 @media (max-width: 600px) {
