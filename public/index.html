@@ -90,7 +90,17 @@
     </nav>
     </div>
 
- 
+    <!-- Produtos -->
+    <div class="container">
+        <div class="listProduct">
+          <div class="item" ng-repeat="product in products">
+            <img ng-src="{{product.image}}" alt="" />
+            <h2>{{product.name}}</h2>
+            <div class="price">${{product.price}}</div>
+            <button ng-click="addToCart(product)">Add To Cart</button>
+          </div>
+        </div>
+      </div>
 
     <!-- Carrinho -->
     <div class="cartTab">
