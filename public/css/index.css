@@ -11,7 +11,7 @@
   --light--color: aliceblue;
   --primary--color: rgba(241, 249, 255, 0.862);
   --danger--color: rgb(141, 48, 48);
-  --bright--color: rgb(253, 198, 80);
+  --bright--color: rgb(186, 235, 242);
   font-size: 62.5%;
 }
 
@@ -142,6 +142,15 @@ nav div:first-child {
   }
 }
 
+
+
+
+
+
+
+
+
+
 /* carrinho/cart */
 
 .container {
@@ -211,15 +220,27 @@ body.showCart .container {
 .cartTab .btn {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  
+  
 }
 .cartTab .btn button {
   background-color: var(--bright--color);
   border: none;
   cursor: pointer;
+ 
+ 
+  
 }
 .cartTab .btn .close {
   background-color: var(--lightGray--color);
 }
+
+
+.btn button:hover{
+  transform: scale(1.1);
+
+}
+
 .cartTab .listCart .item {
   display: grid;
   grid-template-columns: 70px 150px 50px 1fr;
@@ -259,3 +280,13 @@ body.showCart .container {
 .quantity{
   font-size: large;
 }
+
+
+
+
+
+
+
+
+
+
