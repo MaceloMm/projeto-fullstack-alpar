@@ -33,7 +33,8 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
   $scope.cart = [];
   $scope.products = [];
   $scope.cartOpenedOnce = false;
-  $scope.cartTotalQuantity = 0; 
+  $scope.cartTotalQuantity = 0; // ← contador total de itens no carrinho
+  $scope.cartTotalPrice = 0;    // ← total somado dos preços
 
   $scope.callAPI = async () => {
     const response = await $http.get('http://localhost:3000/products');
@@ -47,8 +48,10 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
     $scope.showCart = !$scope.showCart;
   };
 
-  $scope.updateCartQuantity = function () {
+  // Atualiza o total de produtos e o total de preço no carrinho
+  $scope.updateCartSummary = function () {
     $scope.cartTotalQuantity = $scope.cart.reduce((total, item) => total + item.quantity, 0);
+    $scope.cartTotalPrice = $scope.cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
   $scope.addToCart = function (product) {
@@ -64,7 +67,7 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
       $scope.cartOpenedOnce = true;
     }
 
-    $scope.updateCartQuantity(); 
+    $scope.updateCartSummary(); // ← atualiza total de itens e valor
   };
 
   if ($scope.cartOpenedOnce) {
@@ -74,7 +77,7 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
 
   $scope.increaseQuantity = function (item) {
     item.quantity++;
-    $scope.updateCartQuantity(); 
+    $scope.updateCartSummary(); // ← atualiza ao aumentar
   };
 
   $scope.decreaseQuantity = function (item) {
@@ -83,7 +86,6 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
     } else {
       $scope.cart = $scope.cart.filter((p) => p !== item);
     }
-    $scope.updateCartQuantity(); 
+    $scope.updateCartSummary(); // ← atualiza ao diminuir
   };
-
 });

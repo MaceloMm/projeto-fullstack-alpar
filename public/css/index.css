@@ -173,7 +173,8 @@ nav div:first-child {
 
 
 
-/* carrinho/cart */
+/* Items */
+
 
 .container {
   width: 90rem;
@@ -200,7 +201,9 @@ nav div:first-child {
   flex-direction: column;
   justify-content: space-between;
   gap: 2rem;
+
 }
+
 .listProduct .item h2 {
   font-weight: 500;
   font-size: large;
@@ -233,6 +236,18 @@ nav div:first-child {
   color: var(--dark--color);
   transition: .05s ease-out;
 }
+
+
+
+
+
+
+
+
+
+/* carrinho/cart */
+
+
 .cartTab {
   width: 40rem;
   background-color: var(--medium--color);
@@ -252,16 +267,24 @@ body.showCart .container {
   transform: translateX(-25rem);
 }
 
+.cartTab .name{
+  font-size: 1.5rem;
+}
+.cartTab .totalPrice{
+  font-size: 1.5rem;
+}
+
 .cartTab h1 {
   padding: 2rem;
   font-weight: 300;
+  font-size: 4rem;
 }
 
 .cartTab .btn {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  
-  margin: 1.0rem;
+  min-height: 5rem;
+  margin: 2rem 1rem 1rem 1rem;
   column-gap: 1.4rem;
 }
 .cartTab .btn button {
@@ -289,9 +312,11 @@ body.showCart .container {
   gap: 1rem;
   text-align: center;
   align-items: center;
+  padding: 1.5rem 0 1.5rem 0;
 }
 .listCart {
   overflow: auto;
+  margin: 3rem 0 0 0;
 }
 .listCart::-webkit-scrollbar {
   width: 0;
@@ -320,6 +345,17 @@ body.showCart .container {
   background-color: var(--mediumLighter--color);
 }
 .quantity{
+  font-size: large;
+}
+
+.total{
+  margin-left: 2rem;
+}
+.total h3{
+  font-size: 3rem;
+}
+
+.total h2{
   font-size: large;
 }
 

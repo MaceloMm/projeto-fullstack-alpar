@@ -113,11 +113,14 @@
           <div class="item" ng-repeat="product in products">
             <img ng-src="{{product.image}}" alt="" />
             <h2>{{product.name}}</h2>
-            <div class="price">${{product.price}}</div>
+            <div class="price">R$ {{product.price}}</div>
             <button ng-click="addToCart(product)">Add To Cart</button>
           </div>
         </div>
       </div>
+
+
+
 
     <!-- Carrinho -->
     <div class="cartTab">
@@ -128,14 +131,18 @@
             <img ng-src="{{item.image}}" alt="" />
           </div>
           <div class="name">{{item.name}}</div>
-          <div class="totalPrice">${{item.price * item.quantity}}</div>
+          <div class="totalPrice">R${{item.price * item.quantity}}</div>
           <div class="quantity">
             <span class="minus" ng-click="decreaseQuantity(item)">&#60;</span>
             <span>{{item.quantity}}</span>
             <span class="plus" ng-click="increaseQuantity(item)">&#62;</span>
           </div>
         </div>
-      </div>
+    </div>
+    <div class="total">
+      <h2>Total:</h2>
+      <h3>{{ cartTotalPrice | currency:'R$' }}</h3>
+    </div>
       
       <div class="btn">
         <button class="close" ng-click="toggleCart()">CLOSE</button>
