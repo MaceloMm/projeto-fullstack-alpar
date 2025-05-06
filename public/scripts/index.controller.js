@@ -22,7 +22,8 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
       scope.$apply();
     }
   });
-/*   $scope.products = [
+
+  /*   $scope.products = [
     { name: "Produto 1", price: 200, image: "images/image.png" },
     { name: "Produto 2", price: 150, image: "images/image.png" },
     { name: "Produto 3", price: 300, image: "images/image.png" },
@@ -30,20 +31,24 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
   ]; */
 
   $scope.cart = [];
-  $scope.products= [];
+  $scope.products = [];
   $scope.cartOpenedOnce = false;
-  
+  $scope.cartTotalQuantity = 0; 
 
-    $scope.callAPI = async () => {
-      const response = await $http.get('http://localhost:3000/products');
-      $scope.products = response.data;
-      $scope.$apply();
-    };
+  $scope.callAPI = async () => {
+    const response = await $http.get('http://localhost:3000/products');
+    $scope.products = response.data;
+    $scope.$apply();
+  };
 
-    $scope.callAPI()
+  $scope.callAPI();
 
   $scope.toggleCart = function () {
     $scope.showCart = !$scope.showCart;
+  };
+
+  $scope.updateCartQuantity = function () {
+    $scope.cartTotalQuantity = $scope.cart.reduce((total, item) => total + item.quantity, 0);
   };
 
   $scope.addToCart = function (product) {
@@ -53,16 +58,23 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
     } else {
       $scope.cart.push({ ...product, quantity: 1 });
     }
-    $scope.showCart = true;
+
+    if (!$scope.cartOpenedOnce) {
+      $scope.showCart = true;
+      $scope.cartOpenedOnce = true;
+    }
+
+    $scope.updateCartQuantity(); 
   };
 
   if ($scope.cartOpenedOnce) {
     $scope.showCart = true;
     $scope.cartOpenedOnce = true;
-  };
+  }
 
   $scope.increaseQuantity = function (item) {
     item.quantity++;
+    $scope.updateCartQuantity(); 
   };
 
   $scope.decreaseQuantity = function (item) {
@@ -71,10 +83,7 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
     } else {
       $scope.cart = $scope.cart.filter((p) => p !== item);
     }
+    $scope.updateCartQuantity(); 
   };
 
-
-
-
-  
 });
