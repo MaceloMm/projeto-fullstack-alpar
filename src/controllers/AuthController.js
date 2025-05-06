@@ -1,6 +1,7 @@
 const prisma = require('../models/PrismaService');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt'); 
+const { use } = require('../app');
 
 const SECRET_KEY = process.env.ACCESS_KEY;
 
@@ -17,9 +18,11 @@ class AuthController {
                 where: { email }
             });
 
+            if (!user){
+                return res.status(401).json({'message': 'usuario não encontrado!'})
+            }
+
             if (!user || !bcrypt.compareSync(password, user.password)) {
-                console.log(bcrypt.hashSync('macelo123', 10))
-                console.log(bcrypt.compareSync('macelo123', user.password))
                 return res.status(401).json({ message: 'Credenciais inválidas' });
             }
 

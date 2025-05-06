@@ -8,26 +8,35 @@ datasource db {
 }
 
 model User {
-    id       Int        @id @default(autoincrement())
-    email    String     @unique
+    id       Int    @id @default(autoincrement())
+    email    String @unique
     username String
     password String
-    CartItem CartItem[]
+    Cart     Cart?
 }
 
 model Product {
-    id          Int        @id @default(autoincrement())
+    id          Int    @id @default(autoincrement())
     name        String
     price       Float
     description String
-    CartItem    CartItem[]
 }
 
-model CartItem {
-    id        Int     @id @default(autoincrement())
-    userId    Int
-    productId Int
-    quantity  Int     @default(1)
-    User      User    @relation(fields: [userId], references: [id])
-    Product   Product @relation(fields: [productId], references: [id])
+model Cart {
+    id     Int     @id @default(autoincrement())
+    user   User    @relation(fields: [userId], references: [id])
+    userId Int     @unique
+    items  Json    // Contem um array com { productId e quantity }
+    Status String  @default("pendente")
+    Order  Order[]
+}
+
+model Order {
+    id     Int    @id @default(autoincrement())
+    userId Int
+    total  Float
+    status String @default("processando") // outros possiveis "Entregue" ou "Cancelado"
+    items  Json
+    Cart   Cart   @relation(fields: [cartId], references: [id])
+    cartId Int
 }
