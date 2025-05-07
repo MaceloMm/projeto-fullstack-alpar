@@ -58,9 +58,9 @@
                             </svg>
                         </a>
                     </li>
-                    <li><a href="">Cadastrar Produtos</a></li>
+                    <li><a href="views/cadastro-produtos.html">Cadastrar Produtos</a></li>
                     <li ng-click="loggout()"><a href="">Sair</a></li>
-                    <li><a href="">Ajuda</a></li>
+                    <li><a href="#ajuda">Ajuda</a></li>
                 </div>
 
 
@@ -101,7 +101,7 @@
                 <div class="quantityCart"><span>{{ cartTotalQuantity }}</span></div>
             </div>
 
-            
+
             <div class="login" ng-if="logged">
                 <a href="">
                     <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px"
@@ -123,25 +123,28 @@
 
         </div>
 
-        <div class="categories">
-            <div class="category">
-                <h2>Placas de video</h2>
-            </div>
-            <div class="category">
-                <h2>Mouses e Teclados</h2>
-            </div>
-            <div class="category">
-                <h2>Processadores</h2>
-            </div>
-            <div class="category">
-                <h2>Monitores</h2>
-            </div>
-            <div class="category">
-                <h2>Tvs e Celulares</h2>
-            </div>
-        </div>
 
     </nav>
+
+
+
+    <div class="categories">
+        <div class="category">
+            <h2>Placas de video</h2>
+        </div>
+        <div class="category">
+            <h2>Mouses e Teclados</h2>
+        </div>
+        <div class="category">
+            <h2>Processadores</h2>
+        </div>
+        <div class="category">
+            <h2>Monitores</h2>
+        </div>
+        <div class="category">
+            <h2>Tvs e Celulares</h2>
+        </div>
+    </div>
 
     <section class="banner">
         <div class="slides">
