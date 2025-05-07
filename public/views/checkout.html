@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="lojaApp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/checkout.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 </head>
-<body>
+<body ng-controller="IndexController as vm">
 
 <div class='checkout'>
   <div class='order'>
@@ -43,6 +44,9 @@
 </div>
 
 <script>
+  angular.module('lojaApp', []);
 </script>
+<script src="../scripts/index.controller.js"></script>
+<script src="../scripts/index.service.js"></script>
 </body>
 </html>
