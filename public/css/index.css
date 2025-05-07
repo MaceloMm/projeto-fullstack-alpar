@@ -225,9 +225,6 @@ nav {
 body.showCart .cartTab {
   inset: 0 0 0 auto;
 }
-body.showCart .container {
-  transform: translateX(-25rem);
-}
 
 .cartTab .name {
   font-size: 1.5rem;
