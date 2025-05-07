@@ -126,7 +126,7 @@ nav {
 }
 
 .pesquisa {
-  background-color: var(--primary--color);
+   
   height: 2.5rem;
   display: flex;
   align-items: center;
@@ -205,6 +205,8 @@ nav {
 }
 
 /* carrinho/cart */
+
+
 .cartTab {
   width: 40rem;
   backdrop-filter: blur(10px);
@@ -217,6 +219,7 @@ nav {
   grid-template-rows: 7rem 1fr 7rem;
   transition: 0.5s;
   justify-content: center;
+  z-index: 6;
 }
 
 body.showCart .cartTab {
@@ -236,7 +239,8 @@ body.showCart .container {
 .cartTab h1 {
   padding: 2rem;
   font-weight: 300;
-  font-size: 4rem;
+  font-size: 3.5rem;
+  margin: auto;
 }
 
 .cartTab .btn {
@@ -319,7 +323,7 @@ body.showCart .container {
 
 .contato {
   padding: 2rem;
-  width: 70%;
+  width: 76%;
   margin-bottom: 0.9rem;
   margin: auto;
 

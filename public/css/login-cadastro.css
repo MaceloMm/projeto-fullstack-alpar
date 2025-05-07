@@ -1,3 +1,15 @@
+body{
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+nav{
+  position: fixed;
+  width: 100%;
+  
+}
+
 .login {
   display: flex;
   justify-content: center;
@@ -79,7 +91,8 @@ button:hover {
   border-radius: 8px;
   margin-top: 7rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  width: 30.0rem;
+  margin-top: 12.0rem;
 }
 
 h2 {
