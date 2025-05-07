@@ -167,7 +167,7 @@ nav {
 
 .cartIcon {
   position: relative;
-  z-index: 2;
+  z-index: 0;
 }
 
 .quantityCart {
@@ -237,6 +237,9 @@ body.showCart .container {
   padding: 2rem;
   font-weight: 300;
   font-size: 4rem;
+}
+.checkOut a {
+  text-decoration: none;
 }
 
 .cartTab .btn {
