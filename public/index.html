@@ -12,7 +12,8 @@
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/index2.css">
-    <link rel="shortcut icon" href="../public/images/icon.png" type="icon">
+    <link rel="shortcut icon" href="images/icon.png" type="icon">
+    <script src="scripts/main.js" defer></script>
 </head>
 
 <body ng-controller="IndexController as vm" ng-class="{'showCart': showCart}">
@@ -20,103 +21,145 @@
 
     <!-- navbar -->
     <nav>
-        <div>
-            <a href="index.html">Monkey</a>
-        </div>
 
-        <!-- sidebar -->
-        <ul class="sidebar" ng-class="{'flex': vm.sidebarVisivel}"
-            ng-style="{'display': vm.sidebarVisivel ? 'flex' : 'none'}">
-            <li ng-click="vm.hideSidebar()">
+        <div class="nav">
+            <div>
+                <a href="index.html">
+                    <img src="images/logo.png" alt="" width="auto" height="130px">
+                </a>
+            </div>
+
+            <!-- sidebar -->
+            <ul class="sidebar" ng-class="{'flex': vm.sidebarVisivel}"
+                ng-style="{'display': vm.sidebarVisivel ? 'flex' : 'none'}">
+
+                <div ng-if="!logged">
+                    <li ng-click="vm.hideSidebar()">
+                        <a href="">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px"
+                                fill="white">
+                                <path
+                                    d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li><a href="views/cadastro.html">Cadastro</a></li>
+                    <li><a href="views/login.html">Login</a></li>
+                    <li><a href="#ajuda">Ajuda</a></li>
+                </div>
+
+                <div ng-if="logged">
+                    <li ng-click="vm.hideSidebar()">
+                        <a href="">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px"
+                                fill="white">
+                                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li><a href="">Cadastrar Produtos</a></li>
+                    <li ng-click="loggout()"><a href="">Sair</a></li>
+                    <li><a href="">Ajuda</a></li>
+                </div>
+
+
+            </ul>
+
+            <!-- pesquisa -->
+            <div class="pesquisa" id="barraPesquisa" ng-class="{'expandida': vm.pesquisaExpandida}">
+                <form ng-submit="$event.preventDefault()">
+                    <input type="search" placeholder="Pesquisa" />
+                    <a href="" ng-click="vm.togglePesquisa()">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px"
+                            fill="#000000" id="iconePesquisa">
+                            <path
+                                d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+                        </svg>
+                    </a>
+                </form>
+            </div>
+
+            <!-- home -->
+            <div class="">
+                <a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960"
+                        width="26px" fill="#000000">
+                        <path
+                            d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
+                    </svg></a>
+            </div>
+
+            <!-- carrinho -->
+            <div class="cartIcon" ng-click="toggleCart()">
+                <a href="">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#000000">
+                        <path
+                            d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z" />
+                    </svg>
+                </a>
+                <div class="quantityCart"><span>{{ cartTotalQuantity }}</span></div>
+            </div>
+
+            <div class="login" ng-if="logged">
                 <a href="">
                     <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px"
                         fill="#000000">
                         <path
-                            d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                            d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
                     </svg>
                 </a>
-            </li>
-            <li><a href="../public/views/cadastro.html">Cadastro</a></li>
-            <li><a href="views/login.html">Login</a></li>
-            <li><a href="">Ajuda</a></li>
-        </ul>
+            </div>
 
-
-
-        <!-- pesquisa -->
-        <div class="pesquisa" id="barraPesquisa" ng-class="{'expandida': vm.pesquisaExpandida}">
-            <form ng-submit="$event.preventDefault()">
-                <input type="search" placeholder="Pesquisa" />
-                <a href="" ng-click="vm.togglePesquisa()">
+            <div class="menu_button" ng-click="vm.showSidebar()">
+                <a href="">
                     <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px"
-                        fill="#000000" id="iconePesquisa">
-                        <path
-                            d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+                        fill="#000000">
+                        <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
                     </svg>
                 </a>
-            </form>
+            </div>
+
         </div>
 
-        <!-- home -->
-        <div class="">
-            <a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px"
-                    fill="#000000">
-                    <path
-                        d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
-                </svg></a>
-        </div>
-
-        <!-- carrinho -->
-        <div class="cartIcon" ng-click="toggleCart()">
-            <a href="">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                    fill="#000000">
-                    <path
-                        d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z" />
-                </svg>
-            </a>
-            <div class="quantityCart"><span>{{ cartTotalQuantity }}</span></div>
-        </div>
-
-        <!-- hamburg -->
-        <div class="menu_button" ng-click="vm.showSidebar()">
-            <a href="">
-                <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px"
-                    fill="#000000">
-                    <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
-                </svg>
-            </a>
+        <div class="categories">
+            <div class="category">
+                <h2>Placas de video</h2>
+            </div>
+            <div class="category">
+                <h2>Mouses e Teclados</h2>
+            </div>
+            <div class="category">
+                <h2>Processadores</h2>
+            </div>
+            <div class="category">
+                <h2>Monitores</h2>
+            </div>
+            <div class="category">
+                <h2>Tvs e Celulares</h2>
+            </div>
         </div>
 
     </nav>
-    
+
     <section class="banner">
-
         <div class="slides">
-            <div class="slide">
-                <img ng-img="" alt="">
+            <div class="slide active">
+                <img src="images/Carousel/banner1.webp" alt="">
             </div>
             <div class="slide">
-                <img ng-img="" alt="">
+                <img src="assets/imgs/ia.jpg" alt="">
             </div>
             <div class="slide">
-                <img ng-img="" alt="">
+                <img src="assets/imgs/ferramentas.webp" alt="">
             </div>
         </div>
-
         <div class="controls">
-
-            <div class="slideret">
-
-            </div>
-
+            <div class="slideRet active"></div>
+            <div class="slideRet"></div>
+            <div class="slideRet"></div>
         </div>
-
     </section>
 
-    <div class="categories">
-
-    </div>
 
     <div class="products">
 
@@ -124,38 +167,92 @@
 
 
     <!-- Carrinho -->
-    <div class="cartTab" ng-if="false">
-      <h1>Shopping Cart</h1>
-      <div class="listCart">
-        <div class="item" ng-repeat="item in cart">
-          <div class="image">
-            <img ng-src="{{item.image}}" alt="" />
-          </div>
-          <div class="name">{{item.name}}</div>
-          <div class="totalPrice">R${{item.price * item.quantity}}</div>
-          <div class="quantity">
-            <span class="minus" ng-click="decreaseQuantity(item)">&#60;</span>
-            <span>{{item.quantity}}</span>
-            <span class="plus" ng-click="increaseQuantity(item)">&#62;</span>
-          </div>
+    <div class="cartTab">
+        <h1>Carrinho de Compras</h1>
+        <div class="listCart">
+            <div class="item" ng-repeat="item in cart">
+                <div class="image">
+                    <img ng-src="{{item.image}}" alt="" />
+                </div>
+                <div class="name">{{item.name}}</div>
+                <div class="totalPrice">R${{item.price * item.quantity}}</div>
+                <div class="quantity">
+                    <span class="minus" ng-click="decreaseQuantity(item)">&#60;</span>
+                    <span>{{item.quantity}}</span>
+                    <span class="plus" ng-click="increaseQuantity(item)">&#62;</span>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="total">
-      <h2>Total:</h2>
-      <h3>{{ cartTotalPrice | currency:'R$' }}</h3>
-    </div>
-      
-      <div class="btn">
-        <button class="close" ng-click="toggleCart()">CLOSE</button>
-        <button class="checkOut">CHECKOUT</button>
-      </div>
-    </div>
+        <div class="total">
+            <h2>Total:</h2>
+            <h3>{{ cartTotalPrice | currency:'R$' }}</h3>
+        </div>
 
-    <script>
-        angular.module('lojaApp', []);
-    </script>
-    <script src="scripts/index.controller.js"></script>
-    <script src="scripts/index.service.js"></script>
+        <div class="btn">
+            <button class="close" ng-click="toggleCart()">CLOSE</button>
+            <button class="checkOut">CHECKOUT</button>
+        </div>
+        </div>
+
+
+
+
+        <div class="contato" id="ajuda">
+
+            <div class="ajuda">
+                <p>Precisa de ajuda com algo ou gostaria de avaliar o nosso site? Entre em contato.</p>
+            </div>
+    
+    
+            <fieldset>
+                <legend>Contato</legend>
+        
+                <div class="form-columns">
+                    <div class="coluna">
+                        <div class="grupo-form">
+                            <label for="nome">Nome</label>
+                            <input type="text" name="nome" id="nome">
+                        </div>
+                        <div class="grupo-form">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email">
+                        </div>
+                        <div class="grupo-form">
+                            <button type="submit">Enviar</button>
+                        </div>
+                    </div>
+        
+                    <div class="coluna">
+                        <div class="grupo-form">
+                            <label for="assunto">Assunto</label>
+                            <input type="text" name="assunto" id="assunto">
+                        </div>
+                        <div class="grupo-form">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea name="mensagem" id="mensagem"></textarea>
+                        </div>
+                    </div>
+                </div>
+        
+                
+            </fieldset>
+        </div>
+        
+    
+    
+    
+        <footer>
+            <div>
+                Todos os direitos reservados
+            </div>
+        </footer>
+    
+
+        <script>
+            angular.module('lojaApp', []);
+        </script>
+        <script src="scripts/index.controller.js"></script>
+        <script src="scripts/index.service.js"></script>
 
 
 </body>

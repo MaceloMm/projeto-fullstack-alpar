@@ -1,5 +1,68 @@
+:root {
+    --dark--color: rgb(32, 32, 32);
+    --medium--color: rgb(52, 52, 52);
+    --mediumLighter--color: rgb(73, 73, 73);
+    --lightGray--color: rgb(240, 240, 240);
+    --light--color: rgb(251, 253, 255);
+    --primary--color: rgba(241, 249, 255, 0.862);
+    --danger--color: rgb(255, 61, 61);
+    --bright--color: rgb(169, 245, 255);
+    --accent: #9c27b0;
+    font-size: 62.5%;
+  }
+
+
 .banner{
-    width: 100%;
-    height: 50rem;
-    margin-top: .4rem;
+    height: 60rem;
+    position: relative;
+
+    .slides{
+        height: 100%;
+        width: 100%;
+    }
+
+    .slide{
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+        display: none;
+
+        img{
+            object-fit: fill;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .active{
+        display: block !important;
+    }
+
+    .controls{
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        height: 50px;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+        gap: 15px;
+        
+        .slideRet{
+            background-color: var(--medium--color);
+            opacity: 0.8;
+            width: 70px;
+            height: 7px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .active{
+            background-color: var(--accent);
+            opacity: 1;
+        }
+    }
 }

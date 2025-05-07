@@ -1,4 +1,4 @@
-angular.module("lojaApp").controller("IndexController", function ($scope, $http) {
+angular.module("lojaApp").controller("IndexController", function ($scope, $http, $window) {
   const vm = this;
 
   //sidebar
@@ -23,20 +23,6 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
     }
   });
 
-
-
-
-
-
-
-
-  
-  /*   $scope.products = [
-    { name: "Produto 1", price: 200, image: "images/image.png" },
-    { name: "Produto 2", price: 150, image: "images/image.png" },
-    { name: "Produto 3", price: 300, image: "images/image.png" },
-    { name: "Produto 4", price: 180, image: "images/image.png" },
-  ]; */
 
   $scope.cart = [];
   $scope.products = [];
@@ -104,6 +90,7 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
 
   // login
 
+  $scope.logged = localStorage.getItem('token') ? true : false;
   $scope.login = {email: "", password: ""};
 
   $scope.verifyLogin = async () => {
@@ -115,10 +102,16 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
     try{
       const resp = await $http.post('http://localhost:3000/auth/login', $scope.login);
       localStorage.setItem('token', resp.data.token);
+      $window.location.href = '/'
     } catch(error){
       console.log(error.data.message)
     }
   };
+
+  $scope.loggout = () => {
+    localStorage.removeItem('token');
+    $window.location.href = '/'
+  }
 
 
   // cadastro
@@ -138,6 +131,7 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
   };
 
 
+  // front-end functions
 });
 
 
