@@ -32,6 +32,7 @@
             <!-- sidebar -->
             <ul class="sidebar" ng-class="{'flex': vm.sidebarVisivel}"
                 ng-style="{'display': vm.sidebarVisivel ? 'flex' : 'none'}">
+
                 <div ng-if="!logged">
                     <li ng-click="vm.hideSidebar()">
                         <a href="">
@@ -46,6 +47,7 @@
                     <li><a href="views/login.html">Login</a></li>
                     <li><a href="">Ajuda</a></li>
                 </div>
+
                 <div ng-if="logged">
                     <li ng-click="vm.hideSidebar()">
                         <a href="">
@@ -60,6 +62,8 @@
                     <li ng-click="loggout()"><a href="">Sair</a></li>
                     <li><a href="">Ajuda</a></li>
                 </div>
+
+                
             </ul>
 
             <!-- pesquisa -->
