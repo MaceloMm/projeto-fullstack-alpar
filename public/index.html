@@ -21,6 +21,7 @@
 
     <!-- navbar -->
     <nav>
+
         <div class="nav">
             <div>
                 <a href="index.html">
@@ -105,7 +106,17 @@
                     </svg>
                 </a>=
 
-            <!-- hamburg -->
+                <!-- hamburg -->
+                <div class="menu_button" ng-click="vm.showSidebar()">
+                    <a href="">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px"
+                            fill="#000000">
+                            <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
             <div class="menu_button" ng-click="vm.showSidebar()">
                 <a href="">
                     <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px"
@@ -114,7 +125,9 @@
                     </svg>
                 </a>
             </div>
+
         </div>
+
         <div class="categories">
             <div class="category">
                 <h2>Placas de video</h2>
@@ -132,6 +145,7 @@
                 <h2>Tvs e Celulares</h2>
             </div>
         </div>
+
     </nav>
 
     <section class="banner">
@@ -185,21 +199,22 @@
             <button class="close" ng-click="toggleCart()">CLOSE</button>
             <button class="checkOut">CHECKOUT</button>
         </div>
-    
-
-
-
-    <footer>
-        <div>
-            Todos os direitos reservados
         </div>
-    </footer>
 
-    <script>
-        angular.module('lojaApp', []);
-    </script>
-    <script src="scripts/index.controller.js"></script>
-    <script src="scripts/index.service.js"></script>
+
+
+
+        <footer>
+            <div>
+                Todos os direitos reservados
+            </div>
+        </footer>
+
+        <script>
+            angular.module('lojaApp', []);
+        </script>
+        <script src="scripts/index.controller.js"></script>
+        <script src="scripts/index.service.js"></script>
 
 
 </body>
