@@ -11,7 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
         rel="stylesheet">
-
+    <link rel="stylesheet" href="css/index2.css">
     <link rel="shortcut icon" href="../public/images/icon.png" type="icon">
 </head>
 
@@ -89,27 +89,42 @@
         </div>
 
     </nav>
- 
-    <!-- Produtos -->
-    <div class="container">
-        <div class="listProduct">
-          <div class="item" ng-repeat="product in products">
-            <img ng-src="{{product.image}}" alt="" />
-            <h2>{{product.name}}</h2>
-            <div class="price">R$ {{product.price}}</div>
-            <button ng-click="addToCart(product)">Add To Cart</button>
-          </div>
-        </div>
-      </div>
-
     
-    <div class="banner">
-        
+    <section class="banner">
+
+        <div class="slides">
+            <div class="slide">
+                <img ng-img="" alt="">
+            </div>
+            <div class="slide">
+                <img ng-img="" alt="">
+            </div>
+            <div class="slide">
+                <img ng-img="" alt="">
+            </div>
+        </div>
+
+        <div class="controls">
+
+            <div class="slideret">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <div class="categories">
+
+    </div>
+
+    <div class="products">
+
     </div>
 
 
     <!-- Carrinho -->
-    <div class="cartTab">
+    <div class="cartTab" ng-if="false">
       <h1>Shopping Cart</h1>
       <div class="listCart">
         <div class="item" ng-repeat="item in cart">
