@@ -18,7 +18,7 @@ function showSlide(index) {
 setInterval(() => {
     slideIndex = (slideIndex + 1) % slidesEl.length;
     showSlide(slideIndex);
-}, 5000)
+}, 7000)
 
 slideActEl.forEach((slide, i) => {
     slide.addEventListener('click', () => {
