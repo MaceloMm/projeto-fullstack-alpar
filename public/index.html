@@ -38,7 +38,7 @@
             </li>
             <li><a href="../public/views/cadastro.html">Cadastro</a></li>
             <li><a href="views/login.html">Login</a></li>
-            <li><a href="">Ajuda</a></li>
+            <li><a href="#ajuda">Ajuda</a></li>
         </ul>
 
 
@@ -59,8 +59,8 @@
 
         <!-- home -->
         <div class="">
-            <a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px"
-                    fill="#000000">
+            <a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960"
+                    width="26px" fill="#000000">
                     <path
                         d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
                 </svg></a>
@@ -89,7 +89,7 @@
         </div>
 
     </nav>
-    
+
     <section class="banner">
 
         <div class="slides">
@@ -125,31 +125,82 @@
 
     <!-- Carrinho -->
     <div class="cartTab" ng-if="false">
-      <h1>Shopping Cart</h1>
-      <div class="listCart">
-        <div class="item" ng-repeat="item in cart">
-          <div class="image">
-            <img ng-src="{{item.image}}" alt="" />
-          </div>
-          <div class="name">{{item.name}}</div>
-          <div class="totalPrice">R${{item.price * item.quantity}}</div>
-          <div class="quantity">
-            <span class="minus" ng-click="decreaseQuantity(item)">&#60;</span>
-            <span>{{item.quantity}}</span>
-            <span class="plus" ng-click="increaseQuantity(item)">&#62;</span>
-          </div>
+        <h1>Shopping Cart</h1>
+        <div class="listCart">
+            <div class="item" ng-repeat="item in cart">
+                <div class="image">
+                    <img ng-src="{{item.image}}" alt="" />
+                </div>
+                <div class="name">{{item.name}}</div>
+                <div class="totalPrice">R${{item.price * item.quantity}}</div>
+                <div class="quantity">
+                    <span class="minus" ng-click="decreaseQuantity(item)">&#60;</span>
+                    <span>{{item.quantity}}</span>
+                    <span class="plus" ng-click="increaseQuantity(item)">&#62;</span>
+                </div>
+            </div>
+        </div>
+        <div class="total">
+            <h2>Total:</h2>
+            <h3>{{ cartTotalPrice | currency:'R$' }}</h3>
+        </div>
+
+        <div class="btn">
+            <button class="close" ng-click="toggleCart()">CLOSE</button>
+            <button class="checkOut">CHECKOUT</button>
         </div>
     </div>
-    <div class="total">
-      <h2>Total:</h2>
-      <h3>{{ cartTotalPrice | currency:'R$' }}</h3>
+
+
+    <div class="contato" id="ajuda">
+
+        <div class="ajuda">
+            <p>Precisa de ajuda com algo ou gostaria de avaliar o nosso site? Entre em contato.</p>
+        </div>
+
+
+        <fieldset>
+            <legend>Contato</legend>
+    
+            <div class="form-columns">
+                <div class="coluna">
+                    <div class="grupo-form">
+                        <label for="nome">Nome</label>
+                        <input type="text" name="nome" id="nome">
+                    </div>
+                    <div class="grupo-form">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email">
+                    </div>
+                    <div class="grupo-form">
+                        <button type="submit">Enviar</button>
+                    </div>
+                </div>
+    
+                <div class="coluna">
+                    <div class="grupo-form">
+                        <label for="assunto">Assunto</label>
+                        <input type="text" name="assunto" id="assunto">
+                    </div>
+                    <div class="grupo-form">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea name="mensagem" id="mensagem"></textarea>
+                    </div>
+                </div>
+            </div>
+    
+            
+        </fieldset>
     </div>
-      
-      <div class="btn">
-        <button class="close" ng-click="toggleCart()">CLOSE</button>
-        <button class="checkOut">CHECKOUT</button>
-      </div>
-    </div>
+    
+
+
+
+    <footer>
+        <div>
+            Todos os direitos reservados
+        </div>
+    </footer>
 
     <script>
         angular.module('lojaApp', []);
