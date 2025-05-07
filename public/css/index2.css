@@ -66,3 +66,86 @@
         }
     }
 }
+
+.products{
+    height: 60rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+
+    .container{
+        width: 75%;
+        background-color: var(--light--color);
+        border: 1px solid #0000003a;
+        height: 90%;
+        padding: 0.8rem;
+        border-radius: 0.8rem;
+        display: flex;
+        flex-direction: row;
+
+        .filters{
+            width: 20%;
+            background-color: black;
+        }
+
+        .container-product{
+            width: 80%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: auto;
+            overflow-y: auto;
+            overflow-x: hidden;
+            gap: 1rem;
+            padding: 0.8rem;
+
+            .prod-card{
+                background-color: var(--lightGray--color);
+                box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.197);
+                height: 300px;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                border-radius: 0.8rem;
+
+                img{
+                    width: auto;
+                    height: 200px;
+                    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.197);
+                }
+
+                main{
+                    display: flex;
+                    margin-top: 1rem;
+                    flex-direction: column;
+                    align-items: center;
+
+                    div{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 2rem;
+                        margin-top: 1.5rem;
+
+                        button{
+                            border: none;
+                            padding: 1rem;
+                            background-color: #005fa3;
+                            border-radius: 0.8rem;
+                            color: white;
+                            font-weight: bold;
+                            cursor: pointer;
+                            opacity: 0.7;
+                            transition: 0.6s ease;
+                        }
+
+                        button:hover{
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
