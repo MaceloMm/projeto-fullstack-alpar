@@ -53,7 +53,8 @@
                         <a href="">
                             <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px"
                                 fill="white">
-                                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                                <path
+                                    d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
                             </svg>
                         </a>
                     </li>
@@ -163,6 +164,27 @@
 
     <div class="products">
 
+        <div class="container">
+            <div class="filters">
+
+            </div>
+            <div class="container-product">
+                <div class="prod-card" ng-repeat="product in products">
+                    <img src="{{ product.image }}" alt="">
+                    <main>
+                        <h2>
+                            {{ product.name }}
+                        </h2>
+
+                        <div>
+                            <h1>R$ {{product.price}}</h1>
+                            <button type="button" ng-click="addToCart(product)">Comprar</button>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
@@ -192,67 +214,62 @@
             <button class="close" ng-click="toggleCart()">CLOSE</button>
             <button class="checkOut">CHECKOUT</button>
         </div>
+    </div>
+
+
+    <div class="contato" id="ajuda">
+
+        <div class="ajuda">
+            <p>Precisa de ajuda com algo ou gostaria de avaliar o nosso site? Entre em contato.</p>
         </div>
 
 
+        <fieldset>
+            <legend>Contato</legend>
 
-
-        <div class="contato" id="ajuda">
-
-            <div class="ajuda">
-                <p>Precisa de ajuda com algo ou gostaria de avaliar o nosso site? Entre em contato.</p>
-            </div>
-    
-    
-            <fieldset>
-                <legend>Contato</legend>
-        
-                <div class="form-columns">
-                    <div class="coluna">
-                        <div class="grupo-form">
-                            <label for="nome">Nome</label>
-                            <input type="text" name="nome" id="nome">
-                        </div>
-                        <div class="grupo-form">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" id="email">
-                        </div>
-                        <div class="grupo-form">
-                            <button type="submit">Enviar</button>
-                        </div>
+            <div class="form-columns">
+                <div class="coluna">
+                    <div class="grupo-form">
+                        <label for="nome">Nome</label>
+                        <input type="text" name="nome" id="nome">
                     </div>
-        
-                    <div class="coluna">
-                        <div class="grupo-form">
-                            <label for="assunto">Assunto</label>
-                            <input type="text" name="assunto" id="assunto">
-                        </div>
-                        <div class="grupo-form">
-                            <label for="mensagem">Mensagem</label>
-                            <textarea name="mensagem" id="mensagem"></textarea>
-                        </div>
+                    <div class="grupo-form">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email">
+                    </div>
+                    <div class="grupo-form">
+                        <button type="submit">Enviar</button>
                     </div>
                 </div>
-        
-                
-            </fieldset>
-        </div>
-        
-    
-    
-    
-        <footer>
-            <div>
-                Todos os direitos reservados
-            </div>
-        </footer>
-    
 
-        <script>
-            angular.module('lojaApp', []);
-        </script>
-        <script src="scripts/index.controller.js"></script>
-        <script src="scripts/index.service.js"></script>
+                <div class="coluna">
+                    <div class="grupo-form">
+                        <label for="assunto">Assunto</label>
+                        <input type="text" name="assunto" id="assunto">
+                    </div>
+                    <div class="grupo-form">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea name="mensagem" id="mensagem"></textarea>
+                    </div>
+                </div>
+            </div>
+
+
+        </fieldset>
+    </div>
+
+    <footer>
+        <div>
+            Todos os direitos reservados
+        </div>
+    </footer>
+
+
+    <script>
+        angular.module('lojaApp', []);
+    </script>
+    <script src="scripts/index.controller.js"></script>
+    <script src="scripts/index.service.js"></script>
 
 
 </body>

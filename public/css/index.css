@@ -322,6 +322,22 @@ body.showCart .container {
   width: 70%;
   margin-bottom: 0.9rem;
   margin: auto;
+
+  button {
+    margin-top: 1.5rem;
+    padding: 6px 14px;
+    font-size: 1.2rem;
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: flex-start;
+  }
+
+  button:hover {
+    background-color: #005fa3;
+  }
 }
 
 fieldset {
@@ -374,22 +390,6 @@ textarea {
 textarea {
   resize: vertical;
   height: 5.5rem;
-}
-
-button {
-  margin-top: 1.5rem;
-  padding: 6px 14px;
-  font-size: 1.2rem;
-  background-color: #0077cc;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  align-self: flex-start;
-}
-
-button:hover {
-  background-color: #005fa3;
 }
 
 .ajuda {
