@@ -240,6 +240,12 @@ body.showCart .container {
 }
 .checkOut a {
   text-decoration: none;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 100%;
+  width: 100%;
 }
 
 .cartTab .btn {
