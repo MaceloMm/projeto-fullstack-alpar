@@ -1,23 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap');
 
+
+:root {
+  --dark--color: rgb(32, 32, 32);
+  --medium--color: rgb(52, 52, 52);
+  --mediumLighter--color: rgb(73, 73, 73);
+  --blueishGray--color: rgb(130, 146, 173);
+  --lightGray--color: rgb(233, 233, 233);
+  --light--color: rgb(236, 240, 242);
+  --primary--color: rgba(241, 249, 255, 0.862);
+  --darkBlue--color: rgb(51, 84, 191);
+  --danger--color: rgb(255, 61, 61);
+  --bright--color: rgb(169, 245, 255);
+  --darkerBright--color: rgb(99, 144, 150);
+  font-size: 62.5%;
+}
 * {
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
     text-decoration: none;
 }
 
-.subject {
-  color: rgba(255,255,255,0.02);
-  font-size: 180px;
-  font-size: 16vw;
-  letter-spacing: -4px;
-  line-height: 0.9;
-  z-index: -1;
-}
-
-/*--------------------
-Text
----------------------*/
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   line-height: 1.4;
@@ -25,7 +28,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 42px;
-  color: #6d819c;
+  color: var(--blueishGray--color);
   text-align: left;
   font-weight: 500;
 }
@@ -33,7 +36,7 @@ h1 {
 h2 {
   font-size: 28px;
   letter-spacing: -2px;
-  color: #6d819c;
+  color: var(--dark--color);
   text-align: center;
   line-height: 2.8;
   font-weight: 300;
@@ -41,14 +44,14 @@ h2 {
 
 h3 {
   font-size: 16px;
-  color: #dddfe6;
+  color: var(--light--color);
   letter-spacing: 1px;
   text-align: left;
 }
 
 h4 {
   font-size: 16px;
-  color: #7495aa;
+  color: var(--blueishGray--color);
   letter-spacing: 1px;
   text-align: left;
   line-height: 2;
@@ -57,7 +60,7 @@ h4 {
 h5 {
   font-size: 11px;
   font-weight: 700;
-  color: #ff5757;
+  color: var(--darkBlue--color);
   letter-spacing: 1px;
   text-align: left;
   text-transform: uppercase;
@@ -75,7 +78,7 @@ h6 {
   font-family: 'PT Mono';
   font-size: 18px;
   font-weight: 400;
-  color: #f4f5f9;
+  color: var(--bright--color);
   letter-spacing: 0px;
   text-align: left;
   text-transform: uppercase;
@@ -97,7 +100,7 @@ Checkout
   position: absolute;
   top: 38%;
   left: 50%;
-  background-color: #eef1f3;
+  background-color: var(--lightGray--color);
   overflow: hidden;
   
   -webkit-transform: translate(-50%, -50%);
@@ -117,7 +120,7 @@ Checkout
   height: 485px;
   padding: 0 30px;
   float: left;
-  background-color: #f4f5f9;
+  background-color: var(--light--color);
   z-index: 1;
   
   -webkit-box-shadow: 0 15px 24px rgba(37,44,65,0.16);
@@ -137,7 +140,7 @@ ul.order-list li {
   height: 60px;
   margin-left: -40px;
   overflow: hidden;
-  border-bottom: 1px solid #e9ebf2;
+  border-bottom: 1px solid --light--color;
 }
 
 ul.order-list li > img {
@@ -181,7 +184,7 @@ ul.order-list li:hover > h5 {
 }
 
 /*--------------------
-PagamentoF
+Pagamento
 ---------------------*/
 
 .payment {
@@ -202,45 +205,46 @@ button:focus { outline:0; }
   height: 65px;
   position: absolute;
   right: 0px;
-  bottom: -260px;
+  bottom: -261px;
   padding: 10px 20px;
-  background-color: #f1404b;
-  border: 1px solid #f1404b;
+  background-color: var(--darkBlue--color);
+  border: 1px solid var(--darkBlue--color);
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
   font-size: 24px;
-  color: #f4f5f9;
+  color: var(--light--color);
   z-index: -1;
   
-  -webkit-transition: all 0.3s;
-     -moz-transition: all 0.3s;
-      -ms-transition: all 0.3s;
-       -o-transition: all 0.3s;
-          transition: all 0.3s;
+  -webkit-transition: all 0.1s;
+     -moz-transition: all 0.1s;
+      -ms-transition: all 0.1s;
+       -o-transition: all 0.1s;
+          transition: all 0.1s;
 }
 
 .button-cta:hover {
-  background: rgba(193,14,26,1);
-  border: 1px solid rgba(193,14,26,1);
+  background: var(--bright--color);
+  border: 1px solid var(--bright--color);
+  color: var(--medium--color);
 }
 
 .button-cta span {
   display: inline-block;
   position: relative;
   
-  -webkit-transition: all 0.3s;
-     -moz-transition: all 0.3s;
-      -ms-transition: all 0.3s;
-       -o-transition: all 0.3s;
-          transition: all 0.3s;
+  -webkit-transition: all 0.2s;
+     -moz-transition: all 0.2s;
+      -ms-transition: all 0.2s;
+       -o-transition: all 0.2s;
+          transition: all 0.2s;
 }
 
 .button-cta span:after {
   content: '→';
-  color: #f4f5f9;
+  color: var(--medium--color);
   position: absolute;
   opacity: 0;
-  top: 0;
+  top: -4px;
   right: -40px;
 }
 
@@ -253,12 +257,11 @@ button:focus { outline:0; }
   right: 0;
 }
 
-/* From Uiverse.io by adamgiebl */ 
 .cyberpunk-checkbox {
     appearance: none;
     width: 20px;
     height: 20px;
-    border: 2px solid #ff3636;
+    border: 2px solid var(--darkBlue--color);
     border-radius: 5px;
     background-color: transparent;
     display: inline-block;
@@ -269,7 +272,7 @@ button:focus { outline:0; }
   
   .cyberpunk-checkbox:before {
     content: "";
-    background-color: #d03030;
+    background-color: var(--dark--color);
     display: block;
     position: absolute;
     top: 50%;
@@ -287,7 +290,7 @@ button:focus { outline:0; }
   
   .cyberpunk-checkbox-label {
     font-size: 18px;
-    color: #535353;
+    color: var(--medium--color);
     cursor: pointer;
     user-select: none;
     display: flex;
