@@ -1,52 +1,139 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="lojaApp">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/checkout.css">
+<html lang="pt-br" ng-app="CheckoutApp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+    <link rel="stylesheet" href="../css/checkout.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-</head>
-<body ng-controller="IndexController as vm">
+  </head>
+  <body ng-controller="CheckoutController">
+    <div class="checkout">
+      <div class="order">
+        <h2>Checkout</h2>
+        <h5>Order #0101</h5>
+        <ul class="order-list">
+          <li ng-repeat="item in cart">
+            <img ng-src="{{item.image}}" />
+            <h4>{{item.name}}</h4>
+            <h5>R${{item.price}} x {{item.quantity}}</h5>
+          </li>
+        </ul>
+        <h5>Frete</h5>
+        <h4>R${{frete}}</h4>
+        <h5 class="total">Total</h5>
+        <h1>R${{cartTotalPrice + frete}}</h1>
+      </div>
 
-<div class='checkout'>
-  <div class='order'>
-    <h2>Checkout</h2>
-    <h5>Order #0101</h5>
-    <ul class='order-list'>
-      <li><img src='../images/image.png'><h4>AK-47 Pente Alongado</h4><h5>$110</h5></li>
-      <li><img src='../images/image.png'><h4>AK-47 Novinha</h4><h5>$28</h5></li>
-      <li><img src='../images/image.png'><h4>AK-47 faca de combate</h4><h5>$20</h5></li>
-    </ul>
-    <h5>Shipping</h5><h4>$ 9.50</h4>
-    <h5 class='total'>Total</h5><h1>$ 167.50</h1>
-  </div>
-  <h2>Pagamento</h2>
-  <div id='payment' class='payment'>
-    <form>
-
-        <label class="cyberpunk-checkbox-label">
-            <input type="checkbox" class="cyberpunk-checkbox">
+      <div class="payment">
+        <h2>Pagamento</h2>
+        <form name="pagamentoForm" novalidate>
+          <!-- Cartão -->
+          <label class="cyberpunk-checkbox-label">
+            <input
+              type="checkbox"
+              class="cyberpunk-checkbox"
+              ng-model="pagamentoSelecionado.cartao"
+              ng-change="selecionarOpcao('cartao')"
+            />
             Cartão de crédito
-        </label>
-        <label class="cyberpunk-checkbox-label">
-            <input type="checkbox" class="cyberpunk-checkbox">
+          </label>
+          <div class="pagamento-detalhes" ng-if="pagamentoSelecionado.cartao">
+            <input
+              type="text"
+              placeholder="Número do Cartão"
+              ng-model="dadosPagamento.cartao.numero"
+              ng-class="{'input-invalido': pagamentoForm.$submitted || touched.cartao.numero && !validarNumeroCartao()}"
+              ng-focus="touched.cartao.numero = true"
+            />
+            <input
+              type="text"
+              placeholder="Validade (MM/AA)"
+              ng-model="dadosPagamento.cartao.validade"
+              ng-class="{'input-invalido': pagamentoForm.$submitted || touched.cartao.validade && !validarValidade()}"
+              ng-focus="touched.cartao.validade = true"
+            />
+            <input
+              type="text"
+              placeholder="Código de Segurança"
+              ng-model="dadosPagamento.cartao.cvv"
+              ng-class="{'input-invalido': pagamentoForm.$submitted || touched.cartao.cvv && !validarCVV()}"
+              ng-focus="touched.cartao.cvv = true"
+            />
+          </div>
+
+          <!-- Pix -->
+          <label class="cyberpunk-checkbox-label">
+            <input
+              type="checkbox"
+              class="cyberpunk-checkbox"
+              ng-model="pagamentoSelecionado.pix"
+              ng-change="selecionarOpcao('pix')"
+            />
             Pix
-        </label>
-        <label class="cyberpunk-checkbox-label">
-            <input type="checkbox" class="cyberpunk-checkbox">
+          </label>
+          <div class="pagamento-detalhes" ng-if="pagamentoSelecionado.pix">
+            <input
+              type="email"
+              placeholder="Email"
+              ng-model="dadosPagamento.pix.email"
+              ng-class="{'input-invalido': pagamentoForm.$submitted || touched.pix.email && !validarEmail()}"
+              ng-focus="touched.pix.email = true"
+            />
+            <input
+              type="text"
+              placeholder="CPF"
+              ng-model="dadosPagamento.pix.cpf"
+              ng-class="{'input-invalido': pagamentoForm.$submitted || touched.pix.cpf && !validarCPF(dadosPagamento.pix.cpf)}"
+              ng-focus="touched.pix.cpf = true"
+            />
+          </div>
+
+          <!-- Boleto -->
+          <label class="cyberpunk-checkbox-label">
+            <input
+              type="checkbox"
+              class="cyberpunk-checkbox"
+              ng-model="pagamentoSelecionado.boleto"
+              ng-change="selecionarOpcao('boleto')"
+            />
             Boleto
-        </label>
+          </label>
+          <div class="pagamento-detalhes" ng-if="pagamentoSelecionado.boleto">
+            <input
+              type="text"
+              placeholder="CPF"
+              ng-model="dadosPagamento.boleto.cpf"
+              ng-class="{'input-invalido': pagamentoForm.$submitted || touched.boleto.cpf && !validarCPF(dadosPagamento.boleto.cpf)}"
+              ng-focus="touched.boleto.cpf = true"
+            />
+          </div>
 
-        <button class='button-cta' title='Confirm your purchase' type="submit"><span>FINALIZAR COMPRA</span></button>
+          <div class="botao-container">
+            <div class="botao-container">
+              <div class="botao-overlay" ng-if="!formularioValido()"></div>
+              <button
+                type="submit"
+                class="button-cta"
+                ng-click="finalizarCompra()"
+                ng-disabled="!formularioValido()"
+              >
+                <span>FINALIZAR COMPRA</span>
+              </button>
+            </div>
+            <button
+              type="submit"
+              class="button-cta"
+              ng-click="finalizarCompra()"
+              ng-disabled="!formularioValido()"
+            >
+              <span>FINALIZAR COMPRA</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
 
-    </form>
-</div>
-
-<script>
-  angular.module('lojaApp', []);
-</script>
-<script src="../scripts/index.controller.js"></script>
-<script src="../scripts/index.service.js"></script>
-</body>
+    <script src="../scripts/checkout.controller.js"></script>
+  </body>
 </html>
