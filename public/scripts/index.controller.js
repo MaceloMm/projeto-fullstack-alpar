@@ -23,6 +23,14 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
     }
   });
 
+
+
+
+
+
+
+
+  
   /*   $scope.products = [
     { name: "Produto 1", price: 200, image: "images/image.png" },
     { name: "Produto 2", price: 150, image: "images/image.png" },
@@ -87,6 +95,9 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
     }
     $scope.updateCartSummary(); // ← atualiza ao diminuir
   };
+
+
+
 
 
   // login
