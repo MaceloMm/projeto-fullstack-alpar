@@ -38,10 +38,12 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
 
   $scope.getProducts = async () => {
     const response = await $http.get('http://localhost:3000/products');
-    return response.data;
+    console.log(response.data)
+    $scope.products = response.data;
+    $scope.$apply();
   };
 
-  $scope.products = $scope.getProducts();
+  $scope.getProducts();
 
   $scope.toggleCart = function () {
     $scope.showCart = !$scope.showCart;

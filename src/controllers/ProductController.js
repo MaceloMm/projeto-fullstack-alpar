@@ -7,7 +7,6 @@ class ProductController {
     }
 
     static async create(req, res) {
-        console.log(req.file)
         const { name, price, description } = req.body;
         const imgProd = req.file ? `images/prodImages/${req.file.filename}` : null
         const product = await prisma.product.create({
