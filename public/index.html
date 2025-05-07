@@ -45,7 +45,7 @@
                     </li>
                     <li><a href="../public/views/cadastro.html">Cadastro</a></li>
                     <li><a href="views/login.html">Login</a></li>
-                    <li><a href="">Ajuda</a></li>
+                    <li><a href="#ajuda">Ajuda</a></li>
                 </div>
 
                 <div ng-if="logged">
@@ -208,11 +208,56 @@
 
 
 
+        <div class="contato" id="ajuda">
+
+            <div class="ajuda">
+                <p>Precisa de ajuda com algo ou gostaria de avaliar o nosso site? Entre em contato.</p>
+            </div>
+    
+    
+            <fieldset>
+                <legend>Contato</legend>
+        
+                <div class="form-columns">
+                    <div class="coluna">
+                        <div class="grupo-form">
+                            <label for="nome">Nome</label>
+                            <input type="text" name="nome" id="nome">
+                        </div>
+                        <div class="grupo-form">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email">
+                        </div>
+                        <div class="grupo-form">
+                            <button type="submit">Enviar</button>
+                        </div>
+                    </div>
+        
+                    <div class="coluna">
+                        <div class="grupo-form">
+                            <label for="assunto">Assunto</label>
+                            <input type="text" name="assunto" id="assunto">
+                        </div>
+                        <div class="grupo-form">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea name="mensagem" id="mensagem"></textarea>
+                        </div>
+                    </div>
+                </div>
+        
+                
+            </fieldset>
+        </div>
+        
+    
+    
+    
         <footer>
             <div>
                 Todos os direitos reservados
             </div>
         </footer>
+    
 
         <script>
             angular.module('lojaApp', []);
