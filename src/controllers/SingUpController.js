@@ -7,9 +7,19 @@ class SingUpUser {
         const { username, email, password } = req.body;
 
         if (!username, !email, !password) {
-            res.status(401).json({ 'message': 'Os campos precisam ser preenchidos' })
+            return res.status(401).json({ 'message': 'Os campos precisam ser preenchidos' })
         }
+
         try {
+
+            const exists_email = await prisma.user.findUnique({
+                where: { email: email }
+            })
+    
+            if (exists_email){
+                return res.status(400).json({ 'message': 'Email já cadastrado!' })
+            }
+
             const user = await prisma.user.create({
                 data: {
                     email: email,
@@ -18,10 +28,10 @@ class SingUpUser {
                 },
             });
 
-            res.json({'message': `Usuario ${user.username} cadastrado com sucesso!`})
+            return res.json({'message': `Usuario ${user.username} cadastrado com sucesso!`})
         }catch (error){
             console.log('Error: ' + error)
-            res.status(500).json({'message': 'Erro interno no servidor!'});
+            return res.status(500).json({'message': 'Erro interno no servidor!'});
         }
     }
 }

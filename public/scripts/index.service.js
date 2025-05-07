@@ -4,4 +4,4 @@ angular.module('lojaApp')
     const BASE_URL = 'http://localhost:3000';
 
 
-  });
+});

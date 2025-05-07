@@ -132,3 +132,10 @@ button:hover {
   color: #666;
   text-decoration: none;
 }
+
+.buttons{
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+
+}

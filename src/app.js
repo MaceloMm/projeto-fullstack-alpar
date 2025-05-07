@@ -9,8 +9,10 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(cors());
-app.use(express.json());    
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));    
 
+app.use('/imagens', express.static(path.join(__dirname, 'public/images')));
 app.use('/auth', authRoutes);
 app.use('/products', productRoutes);
 app.use('/cart', cartRoutes);

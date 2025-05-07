@@ -36,13 +36,12 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
   $scope.cartTotalQuantity = 0; // ← contador total de itens no carrinho
   $scope.cartTotalPrice = 0;    // ← total somado dos preços
 
-  $scope.callAPI = async () => {
+  $scope.getProducts = async () => {
     const response = await $http.get('http://localhost:3000/products');
-    $scope.products = response.data;
-    $scope.$apply();
+    return response.data;
   };
 
-  $scope.callAPI();
+  $scope.products = $scope.getProducts();
 
   $scope.toggleCart = function () {
     $scope.showCart = !$scope.showCart;
@@ -88,4 +87,44 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http)
     }
     $scope.updateCartSummary(); // ← atualiza ao diminuir
   };
+
+
+  // login
+
+  $scope.login = {email: "", password: ""};
+
+  $scope.verifyLogin = async () => {
+    if (!$scope.login.email || !$scope.login.password){
+      console.log($scope.log.email, $scope.login.password)
+      return
+    }
+
+    try{
+      const resp = await $http.post('http://localhost:3000/auth/login', $scope.login);
+      localStorage.setItem('token', resp.data.token);
+    } catch(error){
+      console.log(error.data.message)
+    }
+  };
+
+
+  // cadastro
+
+  $scope.cadastro = {username: "", email: "", password: "", cPassword: ""};
+
+  $scope.insertUser = async () => {
+    if ($scope.cadastro.password !== $scope.cadastro.cPassword){console.log('senhas diferentes'); return}
+
+    try{
+      $scope.cadastro = {username: $scope.cadastro.username, email: $scope.cadastro.email, password: $scope.cadastro.password}
+      const resp = await $http.post('http://localhost:3000/singup/cadastrar', $scope.cadastro)
+      console.log(resp.data.message)
+    }catch(error){
+      console.log(error.data.message)
+    }
+  };
+
+
 });
+
+

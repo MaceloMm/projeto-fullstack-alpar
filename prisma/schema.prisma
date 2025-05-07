@@ -16,17 +16,18 @@ model User {
 }
 
 model Product {
-    id          Int    @id @default(autoincrement())
+    id          Int     @id @default(autoincrement())
     name        String
     price       Float
     description String
+    image       String?
 }
 
 model Cart {
     id     Int     @id @default(autoincrement())
     user   User    @relation(fields: [userId], references: [id])
     userId Int     @unique
-    items  Json    // Contem um array com { productId e quantity }
+    items  Json // Contem um array com { productId e quantity }
     Status String  @default("pendente")
     Order  Order[]
 }
