@@ -7,8 +7,8 @@
   --dark--color: rgb(32, 32, 32);
   --medium--color: rgb(52, 52, 52);
   --mediumLighter--color: rgb(73, 73, 73);
-  --lightGray--color: rgb(230, 230, 230);
-  --light--color: aliceblue;
+  --lightGray--color: rgb(230, 230, 237);
+  --light--color: rgb(250, 253, 255);
   --primary--color: rgba(241, 249, 255, 0.862);
   --danger--color: rgb(255, 61, 61);
   --bright--color: rgb(169, 245, 255);
@@ -17,11 +17,10 @@
 
 body {
   min-height: 100vh;
-  background-color: var(--primary--color);
+  background-color: var(--lightGray--color);
   font-family: "Lato", sans-serif;
   display: flex;
   flex-direction: column;
-  
 }
 
 nav {
@@ -100,7 +99,6 @@ nav {
 }
 }
 
-
 .pesquisa {
   background-color: var(--primary--color);
   height: 2.5rem;
@@ -139,7 +137,6 @@ nav {
   svg {
     cursor: pointer;
   }
-
 }
 
 .sidebar {
@@ -168,7 +165,7 @@ nav {
   }
 }
 
-.cartIcon{
+.cartIcon {
   position: relative;
   z-index: 2;
 }
@@ -212,6 +209,107 @@ nav {
 
 /* carrinho/cart */
 
+/* form */
+
+.contato {
+ 
+  padding: 2.0rem;
+ 
+  margin-bottom: 0.9rem;
+}
+
+fieldset {
+  border: 1px solid #0000003a;
+  padding: 2.0rem;
+  background-color: var(--light--color);
+  border-radius: 6px;
+}
+
+legend {
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 0 5px;
+}
+
+.form-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.0rem;
+}
+
+.coluna {
+  flex: 1;
+  min-width: 2.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.grupo-form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  padding: 6px 8px;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+textarea {
+  resize: vertical;
+  height: 5.5rem;
+}
+
+button {
+  margin-top: 1.5rem;
+  padding: 6px 14px;
+  font-size: 1.2rem;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+button:hover {
+  background-color: #005fa3;
+  
+}
+
+
+.ajuda{
+  font-size: 1.6rem;
+  display: flex;
+  justify-content: center;
+  margin: 2.0rem;
+}
+
+
+/* footer */
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  background-color: var(--light--color);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.197);
+  
+  div {
+    margin: auto;
+  }
+}
+
+/* carrinho/cart */
 
 .cartTab {
   width: 40rem;
@@ -234,10 +332,10 @@ body.showCart .container {
   transform: translateX(-25rem);
 }
 
-.cartTab .name{
+.cartTab .name {
   font-size: 1.5rem;
 }
-.cartTab .totalPrice{
+.cartTab .totalPrice {
   font-size: 1.5rem;
 }
 
@@ -258,19 +356,16 @@ body.showCart .container {
   background-color: var(--bright--color);
   border: none;
   cursor: pointer;
- width: 18.0rem;
- transition: .3s;
-  
+  width: 18rem;
+  transition: 0.3s;
 }
 
 .cartTab .btn .close {
   background-color: var(--lightGray--color);
 }
 
-
-.btn button:hover{
+.btn button:hover {
   transform: scale(1.1);
-
 }
 
 .cartTab .listCart .item {
@@ -311,26 +406,17 @@ body.showCart .container {
 .listCart .item:nth-child(even) {
   background-color: var(--mediumLighter--color);
 }
-.quantity{
+.quantity {
   font-size: large;
 }
 
-.total{
+.total {
   margin-left: 2rem;
 }
-.total h3{
+.total h3 {
   font-size: 3rem;
 }
 
-.total h2{
+.total h2 {
   font-size: large;
 }
-
-
-
-
-
-
-
-
-
