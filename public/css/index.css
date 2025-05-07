@@ -7,8 +7,8 @@
   --dark--color: rgb(32, 32, 32);
   --medium--color: rgb(52, 52, 52);
   --mediumLighter--color: rgb(73, 73, 73);
-  --lightGray--color: rgb(230, 230, 230);
-  --light--color: aliceblue;
+  --lightGray--color: rgb(230, 230, 237);
+  --light--color: rgb(250, 253, 255);
   --primary--color: rgba(241, 249, 255, 0.862);
   --danger--color: rgb(255, 61, 61);
   --bright--color: rgb(169, 245, 255);
@@ -17,11 +17,15 @@
 
 body {
   min-height: 100vh;
-  background-color: var(--primary--color);
+  background-color: var(--lightGray--color);
   font-family: "Lato", sans-serif;
   display: flex;
   flex-direction: column;
-  
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-top: 50px;
+  justify-content: space-between;
 }
 
 nav {
@@ -139,7 +143,6 @@ nav {
   svg {
     cursor: pointer;
   }
-
 }
 
 .sidebar {
@@ -168,7 +171,7 @@ nav {
   }
 }
 
-.cartIcon{
+.cartIcon {
   position: relative;
   z-index: 2;
 }
@@ -212,7 +215,6 @@ nav {
 
 /* carrinho/cart */
 
-
 .cartTab {
   width: 40rem;
   backdrop-filter: blur(10px);
@@ -234,10 +236,10 @@ body.showCart .container {
   transform: translateX(-25rem);
 }
 
-.cartTab .name{
+.cartTab .name {
   font-size: 1.5rem;
 }
-.cartTab .totalPrice{
+.cartTab .totalPrice {
   font-size: 1.5rem;
 }
 
@@ -258,19 +260,16 @@ body.showCart .container {
   background-color: var(--bright--color);
   border: none;
   cursor: pointer;
- width: 18.0rem;
- transition: .3s;
-  
+  width: 18rem;
+  transition: 0.3s;
 }
 
 .cartTab .btn .close {
   background-color: var(--lightGray--color);
 }
 
-
-.btn button:hover{
+.btn button:hover {
   transform: scale(1.1);
-
 }
 
 .cartTab .listCart .item {
@@ -311,26 +310,17 @@ body.showCart .container {
 .listCart .item:nth-child(even) {
   background-color: var(--mediumLighter--color);
 }
-.quantity{
+.quantity {
   font-size: large;
 }
 
-.total{
+.total {
   margin-left: 2rem;
 }
-.total h3{
+.total h3 {
   font-size: 3rem;
 }
 
-.total h2{
+.total h2 {
   font-size: large;
 }
-
-
-
-
-
-
-
-
-

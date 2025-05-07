@@ -104,7 +104,15 @@
                             d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
                     </svg>
                 </a>
+<<<<<<< HEAD
             </div>
+=======
+            </li>
+            <li><a href="../public/views/cadastro.html">Cadastro</a></li>
+            <li><a href="views/login.html">Login</a></li>
+            <li><a href="#ajuda">Ajuda</a></li>
+        </ul>
+>>>>>>> 171222306636b882bf3b92225941fa83389366cf
 
             <!-- hamburg -->
             <div class="menu_button" ng-click="vm.showSidebar()">
@@ -117,6 +125,7 @@
             </div>
         </div>
 
+<<<<<<< HEAD
         <div class="categories">
             <div class="category">
                 <h2>Placas de video</h2>
@@ -133,6 +142,15 @@
             <div class="category">
                 <h2>Tvs e Celulares</h2>
             </div>
+=======
+        <!-- home -->
+        <div class="">
+            <a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960"
+                    width="26px" fill="#000000">
+                    <path
+                        d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
+                </svg></a>
+>>>>>>> 171222306636b882bf3b92225941fa83389366cf
         </div>
     </nav>
 
@@ -162,8 +180,13 @@
 
 
     <!-- Carrinho -->
+<<<<<<< HEAD
     <div class="cartTab">
         <h1>Carrinho de Compras</h1>
+=======
+    <div class="cartTab" ng-if="false">
+        <h1>Shopping Cart</h1>
+>>>>>>> 171222306636b882bf3b92225941fa83389366cf
         <div class="listCart">
             <div class="item" ng-repeat="item in cart">
                 <div class="image">
@@ -178,7 +201,10 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 171222306636b882bf3b92225941fa83389366cf
         <div class="total">
             <h2>Total:</h2>
             <h3>{{ cartTotalPrice | currency:'R$' }}</h3>
@@ -188,7 +214,61 @@
             <button class="close" ng-click="toggleCart()">CLOSE</button>
             <button class="checkOut">CHECKOUT</button>
         </div>
+<<<<<<< HEAD
+=======
     </div>
+
+
+    <div class="contato" id="ajuda">
+
+        <div class="ajuda">
+            <p>Precisa de ajuda com algo ou gostaria de avaliar o nosso site? Entre em contato.</p>
+        </div>
+
+
+        <fieldset>
+            <legend>Contato</legend>
+    
+            <div class="form-columns">
+                <div class="coluna">
+                    <div class="grupo-form">
+                        <label for="nome">Nome</label>
+                        <input type="text" name="nome" id="nome">
+                    </div>
+                    <div class="grupo-form">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email">
+                    </div>
+                    <div class="grupo-form">
+                        <button type="submit">Enviar</button>
+                    </div>
+                </div>
+    
+                <div class="coluna">
+                    <div class="grupo-form">
+                        <label for="assunto">Assunto</label>
+                        <input type="text" name="assunto" id="assunto">
+                    </div>
+                    <div class="grupo-form">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea name="mensagem" id="mensagem"></textarea>
+                    </div>
+                </div>
+            </div>
+    
+            
+        </fieldset>
+>>>>>>> 171222306636b882bf3b92225941fa83389366cf
+    </div>
+    
+
+
+
+    <footer>
+        <div>
+            Todos os direitos reservados
+        </div>
+    </footer>
 
     <script>
         angular.module('lojaApp', []);
