@@ -28,6 +28,14 @@ class SingUpUser {
                 },
             });
 
+            await prisma.cart.create({
+                data: {
+                    userId: user.id,
+                    items: [],
+                    Status: 'Pendente'
+                }
+            });
+
             return res.json({'message': `Usuario ${user.username} cadastrado com sucesso!`})
         }catch (error){
             console.log('Error: ' + error)

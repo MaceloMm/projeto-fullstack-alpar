@@ -6,16 +6,15 @@ const { use } = require('../app');
 class CartController {
 
     static async list(req, res) {
+        try{
         const user = req.user;
-        const carts = await prisma.cart.findMany({
-            where: {
-                AND: {
-                    userId: user.userId,
-                    Status: 'Pedente'
-                }
-            }
+        const carts = await prisma.cart.findUnique({
+            where: {userId: user.userId}
         });
         res.json(carts);
+        }catch (err){
+            res.status(400).json({'message': err})
+        }
     }
 
     static async create(req, res) {
@@ -25,7 +24,7 @@ class CartController {
         const cart = await prisma.cart.create({
             data: {
                 userId: user.userId,
-                items: [products],
+                items: products ? [products] : [],
                 Status: 'Pendente'
             }
         });
