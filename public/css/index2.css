@@ -109,8 +109,9 @@
         border-radius: 0.8rem;
 
         img {
+          margin-top: .8rem;
           width: auto;
-          height: 200px;
+          height: 17.5rem;
           box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.197);
         }
 
