@@ -260,7 +260,7 @@
                         </h2>
 
                         <div>
-                            <h1>R$ {{product.price}}</h1>
+                            <h1>{{product.price | currency:'R$ '}}</h1>
                             <button type="button" ng-click="addToCart(product)">Comprar</button>
                         </div>
                     </main>
