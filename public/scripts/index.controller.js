@@ -294,7 +294,7 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http,
 
 
   $scope.proAlert = false;
-  $scope.campsProduct = { name: '', price: '', description: '' }
+  $scope.campsProduct = { name: '', price: 0, description: '' }
 
   $scope.showAlertUserP = async function (message) {
     $scope.messageP = message;
