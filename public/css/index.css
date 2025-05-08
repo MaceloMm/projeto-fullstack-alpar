@@ -301,7 +301,7 @@ body.showCart .cartTab {
   width: 2.5rem;
   height: 2.5rem;
   background-color: var(--lightGray--color);
-  color: var(--primary--color);
+  color: var(--medium--color);
   border-radius: 50%;
   cursor: pointer;
   user-select: none;
@@ -310,6 +310,7 @@ body.showCart .cartTab {
   background: transparent;
   color: var(--primary--color);
   cursor: default;
+  font-weight: bold;
 }
 
 .cartTab .listCart .item img {
@@ -317,7 +318,7 @@ body.showCart .cartTab {
   margin-left: 40%;
 }
 .listCart .item:nth-child(even) {
-  background-color: var(--mediumLighter--color);
+  background-color: rgba(73, 73, 73, 0.415);
 }
 .quantity {
   font-size: large;
@@ -333,6 +334,13 @@ body.showCart .cartTab {
 .total h2 {
   font-size: large;
 }
+
+
+
+
+
+
+
 
 /* Contato */
 
