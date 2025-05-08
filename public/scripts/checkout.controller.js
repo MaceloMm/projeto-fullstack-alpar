@@ -1,10 +1,23 @@
+
+
 var app = angular.module('CheckoutApp', []);
 
-app.controller('CheckoutController', function($scope) {
-  $scope.cart = JSON.parse(localStorage.getItem('cart')) || [];
+app.controller('CheckoutController', function($scope, $http, $window) {
+  $scope.getCart = async () =>{
+    try{
+      const reponse = await $http.get('http://localhost:3000/cart', {'headers': { 'Content-Type': undefined, 'Authorization': localStorage.getItem('token') } });
+      $scope.cart = reponse.data.items;
+      $scope.cartTotalPrice = $scope.cart.reduce((total, item) => total + item.product.price * item.quantity, 0);
+      $scope.$apply()
+    }catch (err){
+      console.log(err.data.message)
+    }
+  };
+  
+  $scope.getCart();
+
   $scope.frete = 9.5;
 
-  $scope.cartTotalPrice = $scope.cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
   $scope.pagamentoSelecionado = {
     cartao: false,
@@ -69,7 +82,13 @@ app.controller('CheckoutController', function($scope) {
     return false;
   };
 
-  $scope.finalizarCompra = function() {
-    alert('Compra finalizada com sucesso!');
+  $scope.finalizarCompra = async function() {
+      try{
+        const resp = await $http.put('http://localhost:3000/cart/status', {},{'headers': { 'Content-Type': undefined, 'Authorization': localStorage.getItem('token') }})
+        alert(resp.data.message);
+        $window.location.href = '/'
+      }catch (err){
+        console.log(err.data.message);
+      }
   };
 });

@@ -68,7 +68,6 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http,
 
   $scope.getProducts = async () => {
     const response = await $http.get("http://localhost:3000/products");
-    console.log(response.data);
     $scope.products = response.data;
     $scope.$apply();
   };
@@ -78,36 +77,34 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http,
   // FIM produtos
 
   // CART
-
-  // $scope.cart = []
   $scope.getCart = async () => {
     if (!$scope.logged){$window.location.href = 'views/login.html'; return}
-
     try{
       const reponse = await $http.get('http://localhost:3000/cart', {'headers': { 'Content-Type': undefined, 'Authorization': localStorage.getItem('token') } });
-      $scope.cart = reponse.data;
-      console.log($scope.cart)
+      $scope.cart = reponse.data.items;
+      $scope.updateCartSummary();
+      $scope.$apply()
+      return reponse.data.items
     }catch (err){
       console.log(err.data.message)
     }
   }
 
   $scope.cartOpenedOnce = false;
-  $scope.cartTotalQuantity = 0; // ← contador total de itens no carrinho
-  $scope.cartTotalPrice = 0; // ← total somado dos preços
 
-  $scope.toggleCart = function () {
+  $scope.toggleCart = async function () {
+    await $scope.getCart();
     $scope.showCart = !$scope.showCart;
+    $scope.$apply()
   };
 
-  // Atualiza o total de produtos e o total de preço no carrinho
   $scope.updateCartSummary = function () {
     $scope.cartTotalQuantity = $scope.cart.reduce(
       (total, item) => total + item.quantity,
       0
     );
     $scope.cartTotalPrice = $scope.cart.reduce(
-      (total, item) => total + item.price * item.quantity,
+      (total, item) => total + item.product.price * item.quantity,
       0
     );
 
@@ -116,55 +113,118 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http,
     localStorage.setItem("cart", JSON.stringify($scope.cart));
   };
 
-  //[CHECKOUT 0.1]
-  const savedCart = localStorage.getItem("cart");
-  if (savedCart) {
-    $scope.cart = JSON.parse(savedCart);
-    $scope.updateCartSummary();
-  }
-
-  if (savedCart) {
-    $scope.cart = JSON.parse(savedCart);
-    $scope.updateCartSummary();
-  }
-
-  $scope.addToCart = function (product) {
-    const existing = $scope.cart.find((item) => item.name === product.name);
-    if (existing) {
-      existing.quantity++;
-    } else {
-      $scope.cart.push({ ...product, quantity: 1 });
+  $scope.addToCart = async function(product) {
+    try {
+      await $scope.getCart();
+      console.log($scope.cart)  
+      
+      let existingItem = null;
+      if ($scope.cart.length > 0) {
+        existingItem = $scope.cart.find(item => item.product.id === product.id);
+      }
+      
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        $scope.cart.push({ product: product, quantity: 1 });
+      }
+      
+      if (!$scope.cartOpenedOnce) {
+        $scope.showCart = true;
+        $scope.cartOpenedOnce = true;
+      }
+      
+      $scope.updateCartSummary();
+      
+      const resp = await $http.put(
+        'http://localhost:3000/cart', 
+        { products: $scope.cart }, 
+        {
+          headers: { 
+            'Content-Type': 'application/json', 
+            'Authorization': localStorage.getItem('token') 
+          }
+        }
+      );
+      
+      await $scope.getCart();
+      $scope.$apply();
+      
+    } catch (error) {
+      console.error('Erro ao atualizar carrinho:', error);
     }
-
-    if (!$scope.cartOpenedOnce) {
-      $scope.showCart = true;
-      $scope.cartOpenedOnce = true;
-    }
-
-    $scope.updateCartSummary(); // ← atualiza total de itens e valor
-    localStorage.setItem("cart", JSON.stringify($scope.cart)); //[CHECKOUT 0.1]
   };
+
 
   if ($scope.cartOpenedOnce) {
     $scope.showCart = true;
     $scope.cartOpenedOnce = true;
   }
 
-  $scope.increaseQuantity = function (item) {
-    item.quantity++;
-    $scope.updateCartSummary(); // ← atualiza ao aumentar
+  $scope.increaseQuantity = async function(item) {
+    try {
+      item.quantity++;
+
+      console.log($scope.cart)
+      
+      const resp = await $http.put(
+        'http://localhost:3000/cart/',
+        {
+          products: $scope.cart
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem('token')
+          }
+        }
+      );
+      
+      await $scope.getCart();
+      $scope.$apply();
+      $scope.$apply();
+      
+    } catch (error) {
+      console.error('Erro ao atualizar quantidade:', error);
+      item.quantity--;
+      $scope.updateCartSummary();
+    }
   };
 
-  $scope.decreaseQuantity = function (item) {
-    if (item.quantity > 1) {
-      item.quantity--;
-    } else {
-      $scope.cart = $scope.cart.filter((p) => p !== item);
+  $scope.decreaseQuantity = async function(item) {
+    try {
+      if (item.quantity > 1) {
+        item.quantity--;
+      } else {
+        $scope.cart = $scope.cart.filter((p) => p !== item);
+      }
+  
+      $scope.updateCartSummary();
+      
+      const resp = await $http.put(
+        'http://localhost:3000/cart', 
+        { products: $scope.cart },
+        {
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem('token')
+          }
+        }
+      );
+  
+      await $scope.getCart();
+      $scope.$apply(); 
+      
+    } catch (error) {
+      console.error('Erro ao atualizar carrinho:', error);  
+      if (item.quantity > 1) {
+        item.quantity++;
+      } else {
+        $scope.cart.push(item);
+      }     
+      $scope.updateCartSummary();
     }
-    $scope.updateCartSummary(); // ← atualiza ao diminuir
   };
-  //[CHECKOUT 0.1]
-  localStorage.setItem('cart', JSON.stringify($scope.cart));
 
   // cadastro
 
