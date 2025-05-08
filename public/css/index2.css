@@ -85,8 +85,61 @@
     margin-top: 15px;
 
     .filters {
+      display: flex;
+      flex-direction: column;
       width: 20%;
-      background-color: black;
+      background-color: var(--lightGray--color);
+      overflow: auto;
+      scrollbar-width: none;
+      border: 1px solid rgba(173, 173, 173, 0.415);
+    }
+
+    .filters label:nth-child(even) {
+      background-color: rgba(173, 173, 173, 0.415);
+    }
+
+    .cyberpunk-checkbox {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--medium--color);
+      border-radius: 5px;
+      background-color: transparent;
+      display: inline-block;
+      position: relative;
+      margin-right: 6px;
+      cursor: pointer;
+    }
+    
+    .cyberpunk-checkbox:before {
+      content: "";
+      background-color: var(--dark--color);
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      transition: all 0.3s ease-in-out;
+    }
+    
+    .cyberpunk-checkbox:checked:before {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .cyberpunk-checkbox-label {
+      display: flex;
+      font-weight: bold;
+      font-size: 13px;
+      color: var(--mediumLighter--color);
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      width: 90%;
+      padding: 4% 5% 4% 5%;
     }
 
     .container-product {
