@@ -346,3 +346,7 @@ button:focus { outline:0; }
     border-color: var(--danger--color);
     box-shadow: 0 0 6px rgba(255, 61, 61, 0.3);
   }
+
+  .totalprice{
+    font-size: 25px;
+  }

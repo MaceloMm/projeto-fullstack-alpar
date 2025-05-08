@@ -17,15 +17,15 @@
       <h5>Order #0101</h5>
       <ul class="order-list">
         <li ng-repeat="item in cart">
-          <img ng-src="../{{item.image}}" />
-          <h4>{{item.name}}</h4>
-          <h5>R${{item.price}} x {{item.quantity}}</h5>
+          <img ng-src="../{{item.product.image}}" />
+          <h4>{{item.product.name}}</h4>
+          <h5>R${{item.product.price}} x {{item.quantity}}</h5>
         </li>
       </ul>
       <h5>Frete</h5>
       <h4>R${{frete}}</h4>
       <h5 class="total">Total</h5>
-      <h1>R${{cartTotalPrice + frete}}</h1>
+      <h1 class="totalprice">{{cartTotalPrice + frete | currency:'R$ '}}</h1>
     </div>
 
     <div class="payment">

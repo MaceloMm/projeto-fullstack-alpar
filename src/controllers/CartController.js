@@ -1,6 +1,7 @@
 const { json } = require('express');
 const prisma = require('../models/PrismaService');
 const { use } = require('../app');
+const { compareSync } = require('bcrypt');
 
 
 class CartController {
@@ -40,12 +41,9 @@ class CartController {
                 where: { userId }
             });
 
-            const currentItems = cart ? cart.items : [];
-            const updatedItems = [...currentItems, ...products];
-
-            await prisma.cart.upsert({
+            const new_cart = await prisma.cart.upsert({
                 where: { userId },
-                update: { items: updatedItems },
+                update: { items: products },
                 create: {
                     userId,
                     items: products,
@@ -53,7 +51,7 @@ class CartController {
                 }
             });
 
-            res.json({ message: 'Produtos adicionados ao carrinho!' });
+            res.json({new_cart});
 
         } catch (error) {
             console.error('Erro ao atualizar carrinho:', error);
@@ -69,29 +67,13 @@ class CartController {
                 where: { userId: userId }
             });
 
-            const productIds = currentCart.items.map(item => item.productId);
-
-            const products = await prisma.product.findMany({
-                where: { id: { in: productIds } },
-                select: { id: true, name: true, price: true }
-            });
-
-            const itemsWithPrices = currentCart.items.map(item => {
-                const product = products.find(p => p.id === item.productId);
-                return {
-                    ...item,
-                    name: product.name,
-                    price: product.price
-                }
-            })
-
-            const total = itemsWithPrices.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const total = currentCart.items.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
 
             await prisma.order.create({
                 data: {
                     userId: currentCart.userId,
                     total: total,
-                    items: itemsWithPrices,
+                    items: currentCart.items,
                     cartId: currentCart.id
                 }
             });
@@ -101,10 +83,10 @@ class CartController {
                 data: {items: [], Status: "pendente"}
             });
 
-            res.json({'message': true})
+            res.json({'message': 'Compra finalizada com sucesso!'})
         } catch (error) {
             console.error('Erro ao atualizar o status: ', error)
-            res.status(500).json({ error: 'Erro interno no servidor' });
+            res.status(500).json({ 'message': 'Erro interno no servidor' });
         }
     }
 }
