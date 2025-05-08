@@ -17,7 +17,7 @@ class ProductController {
                 image: imgProd
             }
         });
-        res.json(product);
+        res.json({'message': `Produto ${name} cadastrado!`});
     }
 
 }

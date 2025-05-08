@@ -14,6 +14,7 @@
         rel="stylesheet">
 
     <link rel="shortcut icon" href="images/icon.png" type="icon">
+    <link rel="stylesheet" href="../css/index2.css">
     <script src="../scripts/main.js" defer></script>
 </head>
 
@@ -114,9 +115,6 @@
 
     </nav>
 
-
-    </div>
-
     <div class="cadastro">
 
         <div class="signup-container-produto">
@@ -125,17 +123,17 @@
                 <div class="row1">
                     <div class="input-group">
                         <label for="name">Nome do produto</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" ng-model="campsProduct.name" required>
                     </div>
                     <div class="input-group">
                         <label for="preco">Preço:</label>
                         <input type="text" id="preco" name="preco" inputmode="decimal" placeholder="0,00"
-                            oninput="formatarPreco(this)">
+                            oninput="formatarPreco(this)" ng-model="campsProduct.price" required>
                     </div>
                 </div>
                 <div class="input-group">
                     <label for="mensagem">Descrição do produto</label>
-                    <textarea name="mensagem" id="mensagem"></textarea>
+                    <textarea name="mensagem" id="mensagem" ng-model="campsProduct.description"></textarea>
                 </div>
 
                 <div class="input-group">
@@ -154,11 +152,19 @@
                 </div>
 
 
-                <button class="enviarButton" type="button" ng-click="insertUser()">Cadastrar</button>
+                <button class="enviarButton" type="button" ng-click="insertProduct()">Cadastrar</button>
             </form>
 
         </div>
 
+    </div>
+
+    <div class="alert" ng-if="proAlert">
+        <h1>{{messageP}}</h1>
+        <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#000000" ng-click="closeMessage(proAlert)">
+            <path
+                d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+        </svg>
     </div>
 
     <footer>

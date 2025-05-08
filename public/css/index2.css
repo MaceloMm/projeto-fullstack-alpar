@@ -148,3 +148,33 @@
     }
   }
 }
+
+.alert{
+  position: absolute;
+  top: 6rem;
+  left: 50%;
+  transform: translate(-50%);
+  width: 40rem;
+  height: 5rem;
+  border-radius: 0.8rem;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.197);
+  background-color: var(--light--color);
+  transition: .6s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  svg{
+    margin-right: 2rem;
+    transition: .6s ease;
+    cursor: pointer;
+  }
+
+  svg:hover{
+    scale: 1.1;
+  }
+
+  h1{
+    margin-left: 2rem;
+  }
+}

@@ -91,19 +91,19 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http,
   // login
 
   $scope.logged = localStorage.getItem('token') ? true : false;
-  $scope.login = {email: "", password: ""};
+  $scope.login = { email: "", password: "" };
 
   $scope.verifyLogin = async () => {
-    if (!$scope.login.email || !$scope.login.password){
+    if (!$scope.login.email || !$scope.login.password) {
       console.log($scope.log.email, $scope.login.password)
       return
     }
 
-    try{
+    try {
       const resp = await $http.post('http://localhost:3000/auth/login', $scope.login);
       localStorage.setItem('token', resp.data.token);
       $window.location.href = '/'
-    } catch(error){
+    } catch (error) {
       console.log(error.data.message)
     }
   };
@@ -116,22 +116,91 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http,
 
   // cadastro
 
-  $scope.cadastro = {username: "", email: "", password: "", cPassword: ""};
+  $scope.messageAlert = false;
+
+  $scope.showAlertUserC = async function (message) {
+    $scope.messageCadastro = message;
+    $scope.messageAlert = true;
+    $scope.$apply();
+
+    await new Promise(resolve => setTimeout(resolve, 5000));
+
+    $scope.$apply(() => {
+      $scope.messageAlert = false;
+    });
+
+  }
+
+  $scope.closeMessage = (variableMessage) => { variableMessage = false; };
+
+  $scope.cadastro = { username: "", email: "", password: "", cPassword: "" };
 
   $scope.insertUser = async () => {
-    if ($scope.cadastro.password !== $scope.cadastro.cPassword){console.log('senhas diferentes'); return}
+    if ($scope.cadastro.password !== $scope.cadastro.cPassword) { await $scope.showAlertUserC('Senhas estão diferentes!'); return }
 
-    try{
-      $scope.cadastro = {username: $scope.cadastro.username, email: $scope.cadastro.email, password: $scope.cadastro.password}
+    try {
+      $scope.cadastro = { username: $scope.cadastro.username, email: $scope.cadastro.email, password: $scope.cadastro.password }
       const resp = await $http.post('http://localhost:3000/singup/cadastrar', $scope.cadastro)
-      console.log(resp.data.message)
-    }catch(error){
+      await $scope.showAlertUserC(resp.data.message);
+      $scope.cadastro = { username: "", email: "", password: "", cPassword: "" };
+    } catch (error) {
+      $scope.cadastro = { username: "", email: "", password: "", cPassword: "" };
       console.log(error.data.message)
+      await $scope.showAlertUserC(error.data.message)
     }
   };
 
+  // cadastro de produtos
 
-  // front-end functions
+
+  $scope.proAlert = false;
+  $scope.campsProduct = { name: '', price: '', description: '' }
+
+  $scope.showAlertUserP = async function (message) {
+    $scope.messageP = message;
+    $scope.proAlert = true;
+    $scope.$apply();
+
+    await new Promise(resolve => setTimeout(resolve, 5000));
+
+    $scope.$apply(() => {
+      $scope.proAlert = false;
+    });
+  }
+
+  $scope.insertProduct = async () => {
+
+    if (!$scope.logged) { await $scope.showAlertUserP('Favor realizar login!') };
+
+    const inputFile = document.getElementById('imagem');
+    const file = inputFile.files[0];
+
+    try {
+      const formData = new FormData();
+      console.log(toString($scope.campsProduct.price))
+      formData.append('name', $scope.campsProduct.name);
+      formData.append('price', $scope.campsProduct.price);
+      formData.append('description', $scope.campsProduct.description);
+      formData.append('image', file);
+
+      const config = { transformRequest: angular.identity, headers: { 'Content-Type': undefined, 'Authorization': localStorage.getItem('token') } };
+
+      const response = await $http.post('http://localhost:3000/products', formData, config)
+      await $scope.showAlertUserP(response.data.message);
+      $scope.campsProduct = { name: '', price: '', description: '' }
+      inputFile.value = '';
+      $scope.getProducts();
+      $window.location.href = '/'
+    } catch (err) {
+      console.log(err.data.message);
+      await $scope.showAlertUserP(err.data.message);
+      $scope.campsProduct = { name: '', price: '', description: '' }
+      inputFile.value = '';
+      $window.location.href = '/'
+    }
+  }
+
+    // front-end functions
 });
 
 
