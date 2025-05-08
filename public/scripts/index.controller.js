@@ -283,8 +283,11 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http,
       const resp = await $http.post('http://localhost:3000/singup/cadastrar', $scope.cadastro)
       await $scope.showAlertUserC(resp.data.message);
       $scope.cadastro = { username: "", email: "", password: "", cPassword: "" };
+      $scope.$apply();
+      $window.location.href = '/login'
     } catch (error) {
       $scope.cadastro = { username: "", email: "", password: "", cPassword: "" };
+      $scope.$apply();
       console.log(error.data.message)
       await $scope.showAlertUserC(error.data.message)
     }

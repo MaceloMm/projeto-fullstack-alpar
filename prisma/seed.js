@@ -55,15 +55,15 @@ async function main() {
   const cart1 = await prisma.cart.create({
     data: {
       userId: user1.id,
-      items: JSON.stringify([]), // Carrinho vazio
-      Status: 'pendente'
+      items: [],
+      Status: 'Pendente'
     }
   });
 
   const cart2 = await prisma.cart.create({
     data: {
       userId: user2.id,
-      items: JSON.stringify([]), // Carrinho vazio
+      items: [],
       Status: 'pendente'
     }
   });
@@ -71,7 +71,7 @@ async function main() {
   const cart3 = await prisma.cart.create({
     data: {
       userId: user3.id,
-      items: JSON.stringify([]), // Carrinho vazio
+      items: [],
       Status: 'pendente'
     }
   });
