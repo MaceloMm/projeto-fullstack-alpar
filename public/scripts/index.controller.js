@@ -284,7 +284,7 @@ angular.module("lojaApp").controller("IndexController", function ($scope, $http,
       await $scope.showAlertUserC(resp.data.message);
       $scope.cadastro = { username: "", email: "", password: "", cPassword: "" };
       $scope.$apply();
-      $window.location.href = '/login'
+      $window.location.href = 'views/login'
     } catch (error) {
       $scope.cadastro = { username: "", email: "", password: "", cPassword: "" };
       $scope.$apply();
